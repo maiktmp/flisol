@@ -15,6 +15,9 @@
                             <div class="col-6 offset-3">
                                 {!! QrCode::size(400)->generate($usuario->QR); !!}
                             </div>
+                            <a href="{{asset($usuario->QR_url)}}">
+                                Descargar Código
+                            </a>
                         </div>
                     </div>
                 </div>

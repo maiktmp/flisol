@@ -11,7 +11,7 @@ html,
 body {
     height: 100%;
     position: relative;
-    /*font-family: 'Share Tech', sans-serif;*/
+    font-family: 'Share Tech', sans-serif;
 }
 
 .main-container {
@@ -38,7 +38,7 @@ footer {
 }
 
 .full-content {
-    height: calc(100vh - 250px) !important;
+    height: calc(100vh - 150px) !important;
 }
 
 nav {
@@ -64,7 +64,7 @@ nav {
 ==================================
  */
 body {  
-    font-family: 'Share Tech Mono', monospace;
+    /*font-family: 'Share Tech Mono', monospace;*/
     background: #364d63;
 }
 
@@ -80,13 +80,14 @@ body {
 }
 
 .navbar-light {
+    font-family: 'Share Tech', sans-serif !important;
     background: #1a252f !important;
 }
 
 .nav-link-text {
     color: #FFF !important;
     margin: 0em 2em 0em 2em;
-    font-weight: bold;
+    /*font-weight: bold;*/
 }
 
 .navbar-brand-text {

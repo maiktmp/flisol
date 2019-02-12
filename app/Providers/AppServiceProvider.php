@@ -14,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-//        \URL::forceScheme('https');
+        \URL::forceScheme('https');
         Blade::include('components.form.input', 'input');
         Blade::include('components.form.select', 'select');
         Blade::include('components.form.textarea', 'textarea');
@@ -31,7 +31,7 @@ class AppServiceProvider extends ServiceProvider
             $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
         }
 //        $this->app->bind('path.public', function() {
-//            return base_path('public_html');
+////            return base_path('public_html');
 //        });
         //
     }

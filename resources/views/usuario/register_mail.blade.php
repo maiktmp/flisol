@@ -13,6 +13,11 @@
                                 {{$errors->first('general')}}
                             </div>
                         @endif
+                        @if($errors->has('sendMail'))
+                            <div class="alert alert-success">
+                                {{$errors->first('sendMail')}}
+                            </div>
+                        @endif
                         <form method="POST">
                             <div class="row">
                                 <div class="col-12 text-center">

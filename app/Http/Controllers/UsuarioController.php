@@ -12,6 +12,7 @@ namespace App\Http\Controllers;
 use App\Models\Institucion;
 use App\Models\Municipio;
 use App\Models\Usuario;
+use foo\bar;
 use Hash;
 use Illuminate\Http\Request;
 use Mail;
@@ -59,6 +60,9 @@ class UsuarioController extends Controller
             $message->from('flisol@cisctoluca.com');
             $message->to($user->correo);
         });
+        return back()->withErrors([
+            "sendMail" => "Se ha enviado un correo a " . $user->correo ." por favor completa tu registro."
+        ]);
     }
 
     public function fishRegistry(Request $request)
@@ -175,7 +179,7 @@ class UsuarioController extends Controller
         }
 
         $code = $usuario->id . "-" . time();
-        $url = public_path() . "\img/QR/" . $code . ".png";
+        $url = public_path() . "/img/QR/" . $code . ".png";
 
         QrCode::format('png')
             ->size(1000)

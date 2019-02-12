@@ -37,11 +37,13 @@ class UsuarioController extends Controller
 
     public function registerUserEmailPost(Request $request)
     {
+        //            'correo' => 'required|email|unique:usuario,correo'
         $validator = Validator::make($request->all(),
-            ['email' => 'required|email'],
+            ['email' => 'required|email|unique:usuario,correo'],
             [
                 'email.required' => 'Tu email es requerido.',
-                'email.email' => 'Tu email no es válido.'
+                'email.email' => 'Tu email no es válido.',
+                'email.unique' => 'El correo ya existe.',
             ]
         );
         $validator->validate();

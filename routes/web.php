@@ -18,8 +18,27 @@ Route::view('/', 'welcome');
  *          User Routes
  *=======================================
  */
-Route::view('/user/registry', 'usuario.create')->name('registry');
-Route::post('/user/registry', 'UsuarioController@usuarioCreatePost');
+
+Route::view('/user/registry/email',
+    'usuario.register_mail')
+    ->name('registry_email');
+
+Route::post('/user/registry/email',
+    'UsuarioController@registerUserEmailPost')
+    ->name('registry_email_post');
+
+
+Route::get('/user/finish_registry',
+    'UsuarioController@fishRegistry')
+    ->name('finish_registry');
+
+Route::post('/user/finish_registry',
+    'UsuarioController@fishRegistryPost')
+    ->name('finish_registry_post');
+
+Route::view('/user/registry',
+    'usuario.create')
+        ->name('registry');
 
 Route::get('/user/{userId}/QR',
     'UsuarioController@getQr')

@@ -12,8 +12,9 @@ namespace App\Http\Controllers;
 use App\Models\Institucion;
 use App\Models\Municipio;
 use App\Models\Usuario;
-use Carbon\Carbon;
+use Hash;
 use Illuminate\Http\Request;
+use Mail;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Validator;
 
@@ -33,15 +34,62 @@ class UsuarioController extends Controller
         return response()->json($institutes);
     }
 
-    public function usuarioCreatePost(Request $request)
+    public function registerUserEmailPost(Request $request)
+    {
+        $validator = Validator::make($request->all(),
+            ['email' => 'required|email'],
+            [
+                'email.required' => 'Tu email es requerido.',
+                'email.email' => 'Tu email no es válido.'
+            ]
+        );
+        $validator->validate();
+
+        $email = request('email');
+        $user = new Usuario();
+        $user->correo = $email;
+        $user->save();
+        try {
+        } catch (\Throwable $e) {
+            return back()
+                ->withErrors(['general' => 'Ocurrio un error en el registro ' . " " . $e->getMessage()])
+                ->withInput();
+        }
+        Mail::send('usuario._confirmation_registration', ["user" => $user], function ($message) use ($user) {
+            $message->from('flisol@cisctoluca.com');
+            $message->to($user->correo);
+        });
+    }
+
+    public function fishRegistry(Request $request)
+    {
+        $userHash = $request->get('data', null);
+        $userFind = null;
+        foreach (Usuario::all() as $user) {
+            if (Hash::check($user->correo, $userHash)) {
+                $userFind = $user;
+                break;
+            }
+        }
+        return view('usuario.create', ["user" => $userFind]);
+    }
+
+    public function fishRegistryPost(Request $request)
     {
         $validationRules = [
             'nombre' => 'required|max:255',
+            'app' => 'required|max:255',
+            'apm' => 'required|max:255',
             'edad' => 'required|integer|max:99|min:10',
 //            'correo' => 'required|email|unique:usuario,correo'
         ];
+        $userId = $request->input('userId', 0);
+        $fkIdInstituto = $request->input('fk_id_instituto', 0);
+        $fkIdMunicipio = $request->input('fk_id_municipio', 0);
+        $fkIdDiscapacidad = $request->input('fk_id_discapacidad', 0) * 1;
+        $usuario = Usuario::find($userId);
 
-        if ($request->input('fk_id_municipio', 0) * 1 === 0) {
+        if ($fkIdMunicipio * 1 === 0) {
             $validationRules = array_merge(
                 $validationRules,
                 [
@@ -49,7 +97,7 @@ class UsuarioController extends Controller
                 ]
             );
         }
-        if ($request->input('fk_id_instituto', 0) * 1 === -2) {
+        if ($fkIdInstituto * 1 === -2) {
             $validationRules = array_merge(
                 $validationRules,
                 [
@@ -57,7 +105,7 @@ class UsuarioController extends Controller
                 ]
             );
         }
-        if ($request->input('fk_id_instituto', 0) * 1 === -1) {
+        if ($fkIdInstituto * 1 === -1) {
             $validationRules = array_merge(
                 $validationRules,
                 [
@@ -68,6 +116,10 @@ class UsuarioController extends Controller
         $validationMessages = [
             'nombre.required' => 'Es necesario que ingreses tu nombre.',
             'nombre.max' => 'Ingresaste un nombre demaciado largo.',
+            'app.required' => 'Es necesario que ingreses tu apellido.',
+            'app.max' => 'Ingresaste un apellido demaciado largo.',
+            'apm.required' => 'Es necesario que ingreses tu apellido.',
+            'apm.max' => 'Ingresaste un apellido demaciado largo.',
             'edad.required' => 'Es necesario que ingreses tu edad.',
             'edad.integer' => 'Tu edad debe ser un valor entero.',
             'edad.max' => 'Eres demaciado viejo para asistir.',
@@ -94,23 +146,37 @@ class UsuarioController extends Controller
                 ->withErrors($validator->errors());
         }
 
-        if ($request->input('fk_id_instituto', 0) * 1 === -1) {
+        if ($fkIdInstituto * 1 === -1) {
             $institute = new Institucion();
-            $institute->fk_id_municipio = $request->input('fk_id_municipio');
+            $institute->fk_id_municipio = $fkIdMunicipio;
             $institute->nombre = $request->input('institucion.nombre');
             $institute->save();
         }
-        $usuario = new Usuario();
+
+
         $usuario->fill($request->all());
-        if ($request->input('fk_id_instituto', 0) * 1 > 0) {
+
+        if ($fkIdDiscapacidad !== 0) {
+            $usuario->fk_id_discapacidad = $fkIdDiscapacidad;
+        }
+
+        if ($fkIdInstituto * 1 > 0) {
             $usuario->fk_id_institucion = $request->input('fk_id_instituto');
-        } elseif ($request->input('fk_id_instituto', 0) * 1 === -1) {
+        } elseif ($fkIdInstituto * 1 === -1) {
             $usuario->fk_id_institucion = $institute->id;
         }
-        $usuario->save();
+
+        try {
+            $usuario->saveOrFail();
+        } catch (\Throwable $e) {
+            return back()
+                ->withInput()
+                ->withErrors(['general' => 'Ocurrio un error en el registro ' . " " . $e->getMessage()]);
+        }
 
         $code = $usuario->id . "-" . time();
         $url = public_path() . "\img/QR/" . $code . ".png";
+
         QrCode::format('png')
             ->size(1000)
             ->generate($code, $url);

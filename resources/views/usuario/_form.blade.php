@@ -5,10 +5,23 @@
 @push('scripts')
     <script src="{{ asset('js/usuario/_form.js') }}"></script>
 @endpush
+
 <form method="POST"
       class="mb-3">
     @csrf
-    <div class="row">
+    <div class="row text-left">
+        @if($errors->has('general'))
+            <div class="alert alert-danger">
+                <p>
+                    {{$errors->first('general')}}
+                </p>
+            </div>
+        @endif
+
+        <div class="col-12 text-center my-2">
+            <span>Algunos datos sobre ti</span>
+        </div>
+
         <div class="col-sm-12 col-lg-4">
             @input([
                     'label' => 'Nombre',
@@ -17,7 +30,20 @@
                 ])
         </div>
         <div class="col-sm-12 col-lg-4">
-
+            @input([
+                    'label' => 'Apellido Paterno',
+                    'name' => 'app',
+                    'value'=>old('app')
+                ])
+        </div>
+        <div class="col-sm-12 col-lg-4">
+            @input([
+                    'label' => 'Apellido Materno',
+                    'name' => 'apm',
+                    'value'=>old('apm')
+                ])
+        </div>
+        <div class="col-sm-6 col-lg-2">
             @input([
                     'label' => 'Edad',
                     'name' => 'edad',
@@ -25,18 +51,28 @@
                      'value'=>old('edad')
                 ])
         </div>
+        <div class="col-sm-6 col-lg-2">
+            @select([
+                    'label' => 'Sexo',
+                    'name' => 'sexo',
+                    'options'=> [
+                        "M"=>"Masculino",
+                        "F"=>"Femenino",
+                    ],
+                     'selected'=>old('sexo')
+                ])
+        </div>
         <div class="col-sm-12 col-lg-4">
-
-            @input([
-                    'label' => 'Correo ',
-                    'name' => 'correo',
-                     'value'=>old('correo')
+            @select([
+                    'label' => '¿Tienes alguna discapacidad? ',
+                    'name' => 'fk_id_discapacidad',
+                    'options'=>\App\Models\Discapacidad::asMap(),
+                     'selected'=> old('fk_id_discapacidad')*1,
+                    'placeHolder'=>"Ninguna",
                 ])
         </div>
         <div class="col-sm-12 mty-2 text-center">
-
             <span>¿De que lugar nos visitas?</span>
-
         </div>
         <div class="col-sm-12 col-lg-4">
             @select([
@@ -57,6 +93,7 @@
                   'selected'=>old('fk_id_municipio')*1
               ])
         </div>
+
         <div class="col-sm-12 col-lg-4">
             @select([
                   'id'=>'select-instituto',
@@ -66,7 +103,7 @@
                   'selected'=>old('fk_id_instituto')
               ])
         </div>
-
+        <input name="userId" type="hidden" value="{{$user->id}}">
         <div id="div-institute-name" class="col-sm-12 col-lg-4">
             @input([
                     'label' => 'Nombre de tu institución',
@@ -79,10 +116,11 @@
     <div class="row">
         <div class="col-12 text-center">
             <button type="submit"
-                    class="btn btn-primary">REGISTARME
+                    class="btn btn-primary">FINALIZAR REGISTRO
             </button>
         </div>
     </div>
+
 </form>
 
 <input id="inp-url-municipios" type="hidden" value="{{route('user_get_city_by_state',['stateId'=>'FAKE_ID'])}}">

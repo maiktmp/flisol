@@ -44,8 +44,10 @@
             <option value="{{$value}}">{{$option}}</option>
         @endif
     @empty
-        <option selected value="0">---</option>
-        @endforelse
-        </select>
-        <span class="invalid-feedback">{{ $errors->first($errorName??$name) }}</span>
+        @if(!isset($placeHolder))
+            <option selected value="0">---</option>
+            @endif
+    @endforelse
+            </select>
+            <span class="invalid-feedback">{{ $errors->first($errorName??$name) }}</span>
 </div>

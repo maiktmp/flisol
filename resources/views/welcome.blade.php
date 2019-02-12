@@ -1,5 +1,12 @@
 <?php
 ?>
+@push('scripts')
+{{--    <script src="{{ asset('js/usuario/_form.js') }}"></script>--}}
+@endpush
+
+@push('css')
+{{--    <script src="{{ asset('js/usuario/_form.js') }}"></script>--}}
+@endpush
 
 @extends('templates.main')
 @section('content')

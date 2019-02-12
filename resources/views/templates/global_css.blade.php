@@ -9,7 +9,7 @@
       crossorigin="anonymous"
 />
 
-<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-<link rel="stylesheet" href="{{ asset('css/fontawesome.css') }}">
-<link rel="stylesheet" href="{{ asset('css/flisol.css') }}">
+{{--<link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">--}}
+{{--<link rel="stylesheet" href="{{ asset('/css/fontawesome.css') }}">--}}
+<link rel="stylesheet" href="{{ asset('/css/flisol.css') }}">
 

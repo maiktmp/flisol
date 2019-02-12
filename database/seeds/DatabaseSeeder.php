@@ -13,7 +13,20 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(UsersTableSeeder::class);
         $this->seedStates();
+        $this->seedDiscapacidades();
         $this->call(MunicipiosTableSeeder::class);
+    }
+
+    public function seedDiscapacidades()
+    {
+        DB::table('discapacidad')->insert([
+            ['nombre' => 'Autismo'],
+            ['nombre' => 'Sordera'],
+            ['nombre' => 'Intelectuales o mentales'],
+            ['nombre' => 'Ceguera'],
+            ['nombre' => 'Transtorno del lenguaje'],
+            ['nombre' => 'Discapacidad fisica'],
+        ]);
     }
 
     public function seedStates()

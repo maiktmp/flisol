@@ -13,8 +13,14 @@ class CreateFlisolSchema extends Migration
      */
     public function up()
     {
+        $this->down();
 
         Schema::create('estado', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('nombre');
+        });
+
+        Schema::create('discapacidad', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
         });
@@ -42,18 +48,26 @@ class CreateFlisolSchema extends Migration
         });
         Schema::create('usuario', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre');
-            $table->integer('edad');
+            $table->string('nombre')->nullable();
+            $table->integer('edad')->nullable();
+            $table->string('app')->nullable();
+            $table->string('apm')->nullable();
             $table->string('correo');
+            $table->string('sexo')->nullable();
             $table->string('QR')->nullable();
             $table->string('QR_url')->nullable();
             $table->timestamps();
             $table->unsignedInteger('fk_id_municipio')->nullable();
             $table->unsignedInteger('fk_id_institucion')->nullable();
+            $table->unsignedInteger('fk_id_discapacidad')->nullable();
 
             $table->foreign('fk_id_municipio')
                 ->references('id')
                 ->on('municipio');
+
+            $table->foreign('fk_id_discapacidad')
+                ->references('id')
+                ->on('discapacidad');
 
             $table->foreign('fk_id_institucion')
                 ->references('id')
@@ -152,6 +166,7 @@ class CreateFlisolSchema extends Migration
         Schema::dropIfExists('usuario');
         Schema::dropIfExists('institucion');
         Schema::dropIfExists('municipio');
+        Schema::dropIfExists('discapacidad');
         Schema::dropIfExists('estado');
     }
 }

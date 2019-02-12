@@ -10,7 +10,7 @@
                 <a class="nav-link" href="#">INICIO</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{route('registry')}}">REGISTRO</a>
+                <a class="nav-link" href="{{route('registry_email')}}">REGISTRO</a>
             </li>
         </ul>
         <span class="navbar-text">

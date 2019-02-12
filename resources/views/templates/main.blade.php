@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/png" href="{{ asset('/img/cisc.png') }}"/>
-    <title>@yield('title', 'Flisol')</title>
+    <title>@yield('title', 'CISC FLISOL')</title>
     <!-- Stylesheets -->
     @include('templates.global_css')
     @stack('css')

@@ -13,7 +13,7 @@
                 <a class="nav-link nav-link-text active" href="#">Inicio</a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link nav-link-text" href="{{route('registry')}}">Registro</a>
+                <a class="nav-link nav-link-text" href="{{route('registry_email')}}">Registro</a>
             </li>
             <li class="nav-item ">
                 <a class="nav-link nav-link-text" href="#">Eventos</a>

@@ -21,7 +21,6 @@
     </div> -->
     <br>
     <br>
-    <div class=" full-content">
 	<center>
         <h2 class="title-timer">FLISOL 2019</h2>
         <div id="div-padre-cuenta">
@@ -46,7 +45,6 @@
             </div>
         </div>
     </center>
-    </div>
     <br>
     <br>
     <br>

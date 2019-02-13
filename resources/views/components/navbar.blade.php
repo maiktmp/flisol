@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light">
-    <a class="navbar-brand navbar-brand-text" href="#" style="">
+    <a class="navbar-brand navbar-brand-text" href="{{route('welcome')}}" style="">
         <div style="
             background-image: url({{asset('/img/flisolChida.png')}});
             background-repeat: no-repeat;
@@ -19,7 +19,7 @@
     <div id="navCollapse" class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto justify-content-center">
             <li class="nav-item active">
-                <a class="nav-link nav-link-text active" href="#">Inicio</a>
+                <a class="nav-link nav-link-text active" href="{{route('welcome')}}">Inicio</a>
             </li>
             <li class="nav-item ">
                 <a class="nav-link nav-link-text" href="{{route('registry_email')}}">Registro</a>

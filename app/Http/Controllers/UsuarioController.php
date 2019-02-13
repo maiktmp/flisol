@@ -12,7 +12,6 @@ namespace App\Http\Controllers;
 use App\Models\Institucion;
 use App\Models\Municipio;
 use App\Models\Usuario;
-use foo\bar;
 use Hash;
 use Illuminate\Http\Request;
 use Mail;
@@ -42,7 +41,7 @@ class UsuarioController extends Controller
             [
                 'email.required' => 'Tu email es requerido.',
                 'email.email' => 'Tu email no es válido.',
-                'email.unique' => 'El correo ya existe.',
+                'email.unique' => 'El correo ya ha sido registrado anteriormente.',
             ]
         );
         $validator->validate();
@@ -58,11 +57,12 @@ class UsuarioController extends Controller
                 ->withInput();
         }
         Mail::send('usuario._confirmation_registration', ["user" => $user], function ($message) use ($user) {
-            $message->from('flisol@cisctoluca.com');
+            $message->from('flisol@cisctoluca.com','FLISoL');
+            $message->subject('Confirmación de correo.');
             $message->to($user->correo);
         });
         return back()->withErrors([
-            "sendMail" => "Se ha enviado un correo a " . $user->correo . " por favor completa tu registro."
+            "sendMail" => "Se ha enviado un correo a " . $user->correo ." por favor completa tu registro."
         ]);
     }
 
@@ -185,7 +185,7 @@ class UsuarioController extends Controller
 
         QrCode::format('png')
             ->size(1000)
-            ->generate($code, public_path() . $url);
+            ->generate($code, public_path().$url);
 
         $usuario->QR = $code;
         $usuario->QR_url = $url;

@@ -14,7 +14,7 @@
     <header>
         @include('components.navbar')
     </header>
-    <section>
+    <section class="animated fadeIn slow">
             @yield('content')
     </section>
     <footer>

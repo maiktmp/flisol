@@ -18,7 +18,7 @@
                                 {{$errors->first('sendMail')}}
                             </div>
                         @endif
-                        <form method="POST">
+                        <form method="POST" class="box">
                             <div class="row">
                                 <div class="col-12 text-center">
                                     <p>Ingresa tu correo para continuar con el registro</p>

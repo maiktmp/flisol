@@ -34,7 +34,7 @@
     @endforelse
     >
 @else
-    <div class="form-group">
+    <div class="inputBox form-group">
         <label class="{{$labelClass??null}}"
                for="{{$id ?? $name}}">{{$label}}</label>
         <input id="{{$id ?? $name}}"

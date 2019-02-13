@@ -7,3 +7,4 @@
 
 <script src="{{ asset('js/jquery.js') }}"></script>
 <script src="{{ asset('js/boostrap.js') }}"></script>
+<script src="{{ asset('js/global/inputAnimation.js') }}"></script>

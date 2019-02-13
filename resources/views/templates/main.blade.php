@@ -15,9 +15,7 @@
         @include('components.navbar')
     </header>
     <section>
-        <div class="full-content">
             @yield('content')
-        </div>
     </section>
     <footer>
         @include('components.footer')

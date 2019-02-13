@@ -29,9 +29,9 @@
                     <div class="row">
                         <div class="col-10 offset-1">
                             <p style="font-size: 1.8em">
-                                Gracias por tu interes por el este gran evento, por favor
+                                Gracias por tu interés por este gran evento, por favor
                                 completa tu
-                                inscripción entrando al siguiente link</p>
+                                registro haciendo click en el siguiente botón.</p>
                         </div>
                     </div>
                     <div class="row">

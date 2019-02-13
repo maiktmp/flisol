@@ -5,7 +5,7 @@
 @section('content')
     <div class="container">
         <div class="row mb-2 mt-5 ">
-            <div class="col-6 offset-3">
+            <div class="col-sm-12 col-lg-6 offset-lg-3">
                 <div class="card">
                     <div class="card-body">
                         @if($errors->has('general'))

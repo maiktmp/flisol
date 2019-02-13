@@ -19,11 +19,8 @@
         background-position: center;
         ">
     </div> -->
-    <br>
-    <br>
-	<center>
-        <h2 class="title-timer">FLISOL 2019</h2>
-        {{--<h1>{{asset('/js/moment.min.js')}}</h1>--}}
+   	<center>
+        <h2 class="title-timer mt-3">FLISOL 2019</h2>
         <div id="div-padre-cuenta">
             <div class="cuenta-regresiva-flisol" id="div-cuenta">
                 <div class="row" id="row-cuenta">
@@ -46,7 +43,4 @@
             </div>
         </div>
     </center>
-    <br>
-    <br>
-    <br>
 @endsection

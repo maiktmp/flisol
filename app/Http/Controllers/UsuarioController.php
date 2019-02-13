@@ -37,7 +37,6 @@ class UsuarioController extends Controller
 
     public function registerUserEmailPost(Request $request)
     {
-        //            'correo' => 'required|email|unique:usuario,correo'
         $validator = Validator::make($request->all(),
             ['email' => 'required|email|unique:usuario,correo'],
             [
@@ -63,7 +62,7 @@ class UsuarioController extends Controller
             $message->to($user->correo);
         });
         return back()->withErrors([
-            "sendMail" => "Se ha enviado un correo a " . $user->correo ." por favor completa tu registro."
+            "sendMail" => "Se ha enviado un correo a " . $user->correo . " por favor completa tu registro."
         ]);
     }
 
@@ -181,11 +180,12 @@ class UsuarioController extends Controller
         }
 
         $code = $usuario->id . "-" . time();
-        $url = public_path() . "/img/QR/" . $code . ".png";
+
+        $url = "/img/QR/" . $code . ".png";
 
         QrCode::format('png')
             ->size(1000)
-            ->generate($code, $url);
+            ->generate($code, public_path() . $url);
 
         $usuario->QR = $code;
         $usuario->QR_url = $url;

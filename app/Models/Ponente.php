@@ -26,7 +26,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $direccion
  * @property string $descripcion
  * @property string $empresa
- * @property string $url
+ * @property string|null $image_url
  * @property int $fk_id_estado
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Ponente whereCorreo($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Ponente whereDescripcion($value)
@@ -37,12 +37,40 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Ponente whereNombre($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Ponente whereTelefono($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Ponente whereUrl($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Ponente whereImageUrl($value)
  */
 class Ponente extends Model
 {
 
     protected $table = "ponente";
+    protected $fillable = [
+        "nombre",
+        "correo",
+        "telefono",
+        "direccion",
+        "descripcion",
+        "empresa",
+        "image_url",
+        "fk_id_estado",
+    ];
     public $timestamps = false;
+
+    public static function rules()
+    {
+        return [
+            "nombre" => 'required',
+            "correo" => 'required',
+            "telefono" => 'required',
+            "fk_id_estado" => 'required'
+        ];
+    }
+
+    public static function messages()
+    {
+        return [
+            "*.required" => 'El campo es requerido'
+        ];
+    }
 
     public function estado()
     {

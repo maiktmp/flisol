@@ -48,6 +48,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Usuario whereApp($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Usuario whereFkIdDiscapacidad($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Usuario whereSexo($value)
+ * @property-read mixed $full_name
  */
 class Usuario extends Model
 {

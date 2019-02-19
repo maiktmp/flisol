@@ -38,7 +38,7 @@ Route::post('/user/finish_registry',
 
 Route::view('/user/registry',
     'usuario.create')
-        ->name('registry');
+    ->name('registry');
 
 Route::get('/user/{userId}/QR',
     'UsuarioController@getQr')
@@ -53,3 +53,31 @@ Route::get(
     '/user/registry/city/{cityId}/get_institutes',
     'UsuarioController@getInstitucionByMunicipio'
 )->name('user_get_institutes_by_state');
+
+
+/**
+ *=======================================
+ *          Admin Routes
+ *=======================================
+ */
+
+Route::get('/admin/flisol',
+    'admin\PonenteController@index')
+    ->name("index_ponente");
+
+Route::view('/admin/flisol/ponente/create',
+    'admin.ponente.create')
+    ->name('ponente_create');
+
+Route::post('/admin/flisol/ponente/create',
+    'admin\PonenteController@createPost')
+    ->name('ponente_create_post');
+
+
+
+
+
+
+
+
+

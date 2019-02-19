@@ -5,6 +5,7 @@
 @push("css")
 	<link rel="stylesheet" type="text/css" href="{{asset('/css/timerStyle.css')}}">
 @endpush
+
 @push("scripts")
 	<script type="text/javascript" src="{{asset('/js/funcionamientoTimer.js')}}"></script>
 	<script type="text/javascript" src="{{asset('/js/moment.min.js')}}"></script>

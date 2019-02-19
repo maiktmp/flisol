@@ -94,10 +94,10 @@ class CreateFlisolSchema extends Migration
             $table->string('nombre');
             $table->string('correo');
             $table->string('telefono');
-            $table->string('direccion', 1000);
-            $table->string('descripcion', 1000);
-            $table->string('empresa', 1000);
-            $table->string('url', 1000);
+            $table->string('direccion', 1000)->nullable();
+            $table->string('descripcion', 1000)->nullable();
+            $table->string('empresa', 1000)->nullable();
+            $table->string('image_url', 1000)->nullable();
             $table->unsignedInteger('fk_id_estado');
 
             $table->foreign('fk_id_estado')
@@ -134,18 +134,18 @@ class CreateFlisolSchema extends Migration
                 ->references('id')
                 ->on('tipo_evento');
         });
-        Schema::create('evento_tiene_patrocinador', function (Blueprint $table) {
+        Schema::create('evento_tiene_ponente', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('fk_id_evento');
-            $table->unsignedInteger('fk_id_patrocinador');
+            $table->unsignedInteger('fk_id_ponente');
 
             $table->foreign('fk_id_evento')
                 ->references('id')
                 ->on('evento');
 
-            $table->foreign('fk_id_patrocinador')
+            $table->foreign('fk_id_ponente')
                 ->references('id')
-                ->on('patrocinador');
+                ->on('ponente');
         });
 
     }

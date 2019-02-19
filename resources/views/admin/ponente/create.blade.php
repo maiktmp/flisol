@@ -1,7 +1,7 @@
 @php
     /* @var  $user \App\Models\Usuario*/
 @endphp
-@extends('templates.main')
+@extends('templates.main-admin')
 @section('content')
     <div class="container">
         <div class="row mb-2 mt-5 ">
@@ -10,13 +10,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col text-center">
-                                @if($user===null)
-                                    <p style="font-size: 1.8em">
-                                        Liga de registro no válida
-                                    </p>
-                                @else
-                                        @include('usuario._form',["user"=>$user])
-                                @endif
+                                @include('admin.ponente._form')
                             </div>
                         </div>
                     </div>

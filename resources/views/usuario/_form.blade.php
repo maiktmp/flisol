@@ -45,7 +45,7 @@
         </div>
         <div class="col-sm-6 col-lg-2">
             @input([
-                    'label' => 'Edad',
+                    'label' => 'Año de nacimiento',
                     'name' => 'edad',
                     'type'=> 'number',
                      'value'=>old('edad')

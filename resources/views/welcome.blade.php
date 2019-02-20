@@ -7,8 +7,8 @@
 @endpush
 
 @push("scripts")
-	<script type="text/javascript" src="{{asset('/js/funcionamientoTimer.js')}}"></script>
-	<script type="text/javascript" src="{{asset('/js/moment.min.js')}}"></script>
+	<script type="text/javascript" src="{{asset('/js/funcionamientoTimer.js?v=1')}}"></script>
+	<script type="text/javascript" src="{{asset('/js/moment.min.js?v=1')}}"></script>
 @endpush
 
 

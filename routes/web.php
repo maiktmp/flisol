@@ -54,6 +54,16 @@ Route::get(
     'UsuarioController@getInstitucionByMunicipio'
 )->name('user_get_institutes_by_state');
 
+/**
+ *=======================================
+ *          Ponentes Routes
+ *=======================================
+ */
+
+Route::get(
+    'ponente/index',
+    "PonenteController@index"
+)->name("ponente_index");
 
 /**
  *=======================================

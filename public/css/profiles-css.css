@@ -1,0 +1,70 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/*
+    Created on : 19/02/2019, 01:32:14 PM
+    Author     : Alejandro
+*/
+.centrar{
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-card-center {
+    align-self: center;
+    width: 70%;
+}
+
+.bg-dark{
+    background: #1a252f !important;
+}
+
+.row1 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.row2 {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.info{
+    background: #EEE;
+    font-size: 12px;
+}
+
+textarea{
+    resize: none;
+}
+
+.centrar-vertical-hijo{
+    padding: 10% 0;
+}
+
+.centrar-vertical-padre{
+    padding: 5% 0;
+}
+
+.bg-inp-white{
+    background: white !important;
+}
+
+.card-shadow {
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+}
+
+.box:hover {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-left: 3px solid rgba(0,0,0,0.25);
+    border-bottom: 1px solid rgba(0,0,0,0.25);
+    border-right: 3px solid rgba(0,0,0,0.25);
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.25);
+    transition-duration: .3s;
+}

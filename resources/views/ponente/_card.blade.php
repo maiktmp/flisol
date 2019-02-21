@@ -8,7 +8,7 @@
             </div>
             <div class="card-footer">
                 <small class="text-muted">
-                    <button class="btn btn-block btn-primary" onclick="clickButtonProfile(0)">Detalles</button>
+                    <button class="btn btn-block btn-primary" onclick="clickButtonProfile({{$id}})">Detalles</button>
                 </small>
             </div>
         </div>

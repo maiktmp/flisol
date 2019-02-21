@@ -1,3 +1,5 @@
+var rutaOriginal=$("#img-ponente").attr("src");
+
 $(document).ready(function () {
     $("#modal-profile").modal("hide");
 });
@@ -12,6 +14,7 @@ function clickButtonProfile(id) {
         dataType: "json",
         success: function (response) {
             if (response.success) {
+                $("#img-ponente").attr("src", rutaOriginal + response.data.image_url);
                 $("#inp-ponente-nombre").val(response.data.nombre);
                 $("#inp-ponente-sponsor").val(response.data.empresa);
                 $("#ponente-desc").html(response.data.descripcion);

@@ -66,7 +66,7 @@
             <span>Descripción</span>
         </div>
         <div class="col-12 my-2">
-            <textarea name="descripcion"></textarea>
+            <textarea name="descripcion">{{isset($patrocinador)?$patrocinador->descripcion:old("descripcion")}}</textarea>
         </div>
         <div class="col-12">
             <img id="img-ponente" src="" alt="">

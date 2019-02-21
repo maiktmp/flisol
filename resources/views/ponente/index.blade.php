@@ -45,13 +45,12 @@
                             <div class="card-header">Ponente</div>
                             <div class="card-body">
                                 <div class="row" style="padding-left: 30px; padding-right: 10px;">
-                                    <div class="col-lg-1"></div>
-                                    <div class="col-lg-3">
-                                        <div class="thumbnail paneles centrar centrar-vertical-padre">
-                                            <img src="img/fotoProfesor.png" class="centrar-vertical-hijo">
+                                    <div class="col-lg-4 offset-1">
+                                        <div class="centrar centrar-vertical-padre">
+                                            <img width="100%" src="{{asset("")}}" class="centrar-vertical-hijo" id="img-ponente">
                                         </div>
                                     </div>
-                                    <div class="col-lg-7">
+                                    <div class="col-lg-6">
                                         <div class="row">
                                             <div class="col-lg-1"></div>
                                             <div class="col-lg-11">
@@ -101,7 +100,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-1"></div>
+
                                 </div>
                                 <br>
                                 <div class="row">

@@ -13,8 +13,6 @@ class CreateFlisolSchema extends Migration
      */
     public function up()
     {
-        $this->down();
-
         Schema::create('estado', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
@@ -95,7 +93,7 @@ class CreateFlisolSchema extends Migration
             $table->string('correo');
             $table->string('telefono');
             $table->string('direccion', 1000)->nullable();
-            $table->string('descripcion', 1000)->nullable();
+            $table->text('descripcion')->nullable();
             $table->string('empresa', 1000)->nullable();
             $table->string('image_url', 1000)->nullable();
             $table->unsignedInteger('fk_id_estado');

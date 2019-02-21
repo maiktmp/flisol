@@ -99,10 +99,14 @@ class CreateFlisolSchema extends Migration
             $table->string('empresa', 1000)->nullable();
             $table->string('image_url', 1000)->nullable();
             $table->unsignedInteger('fk_id_estado');
+            $table->unsignedInteger('fk_id_patrocinador');
 
             $table->foreign('fk_id_estado')
                 ->references('id')
                 ->on('estado');
+            $table->foreign('fk_id_patrocinador')
+                ->references('id')
+                ->on('patrocinador');
 
         });
         Schema::create('ubicacion', function (Blueprint $table) {

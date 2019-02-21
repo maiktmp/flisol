@@ -33,7 +33,7 @@
                                 </div>
                                 <div class="col-12 text-center">
                                     <button type="submit"
-                                            class="btn btn-primary">REGISTARME
+                                            class="btn btn-primary">REGISTRARME
                                     </button>
                                 </div>
                             </div>

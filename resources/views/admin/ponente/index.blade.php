@@ -30,6 +30,7 @@
                                             <th class="text-center" scope="col">Correo</th>
                                             <th class="text-center" scope="col">Telefono</th>
                                             <th class="text-center" scope="col">Empresa</th>
+                                            <th class="text-center" scope="col"></th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -40,6 +41,12 @@
                                                 <td class="text-center">{{$ponente->correo}}</td>
                                                 <td class="text-center">{{$ponente->telefono}}</td>
                                                 <td class="text-center">{{$ponente->empresa}}</td>
+                                                <td class="text-center">
+                                                    <a href="{{route('ponente_update',["ponenteId"=>$ponente->id])}}">
+                                                        <i class="fas fa-pencil-alt text-success"></i>
+                                                    </a>
+                                                    &nbsp;&nbsp;&nbsp;
+                                                </td>
                                             </tr>
                                         @empty
                                             <tr>

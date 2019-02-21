@@ -1,6 +1,7 @@
 @php
 
-    @endphp
+    /* @var $ponente \App\Models\Ponente*/
+@endphp
 @push('scripts')
     <script src="https://cdn.ckeditor.com/4.11.2/standard/ckeditor.js"></script>
     <script type="text/javascript" src="{{asset('/js/admin/ponente/_form.js')}}"></script>
@@ -8,65 +9,70 @@
 
 <form method="POST"
       enctype="multipart/form-data"
+      action="{{isset($ponente)?
+      route('ponente_update_post',["ponenteId"=>$ponente->id]):
+      route('ponente_create_post_post')}}"
       class="mb-3">
     @csrf
     <div class="row text-left">
-        @if($errors->has('general'))
-            <div class="alert alert-danger">
-                <p>
-                    {{$errors->first('general')}}
-                </p>
-            </div>
+        @if($errors->has('general'))x
+        <div class="alert alert-danger">
+            <p>
+                {{$errors->first('general')}}
+            </p>
+        </div>
         @endif
         <div class="col-sm-12 col-lg-4">
             @input([
                     'label' => 'Nombre',
                     'name' => 'nombre',
-                    'value'=>old('nombre')
+                    'value'=>isset($ponente)?$ponente->nombre:old('nombre')
                 ])
         </div>
         <div class="col-sm-12 col-lg-4">
             @input([
                     'label' => 'Correo',
                     'name' => 'correo',
-                    'value'=>old('correo')
+                    'value'=>isset($ponente)?$ponente->correo:old('correo')
                 ])
         </div>
         <div class="col-sm-12 col-lg-4">
             @input([
                     'label' => 'Telefono',
                     'name' => 'telefono',
-                    'value'=>old('telefono')
+                    'value'=>isset($ponente)?$ponente->telefono:old('telefono')
                 ])
         </div>
         <div class="col-sm-12 col-lg-8">
             @input([
                     'label' => 'Direccion',
                     'name' => 'direccion',
-                    'value'=>old('direccion')
+                    'value'=>isset($ponente)?$ponente->direccion:old('direccion')
                 ])
         </div>
         <div class="col-sm-12 col-lg-4">
             @input([
                     'label' => 'Empresa',
                     'name' => 'empresa',
-                    'value'=>old('empresa')
+                    'value'=>isset($ponente)?$ponente->empresa:old('empresa')
                 ])
         </div>
-            <div class="col-sm-12 col-lg-4">
-                @select([
-                      'label' => 'Estado',
-                      'name' => 'fk_id_estado',
-                      'options' => \App\Models\Estado::asMap(),
-                      'selected'=> old('fk_id_estado')*1,
-                      'placeHolder'=>"Selecciona un estado"
-                  ])
-            </div>
+        <div class="col-sm-12 col-lg-4">
+            @select([
+                  'label' => 'Estado',
+                  'name' => 'fk_id_estado',
+                  'options' => \App\Models\Estado::asMap(),
+                  'selected'=> isset($ponente)?$ponente->fk_id_estado*1:old('fk_id_estado')*1,
+                  'placeHolder'=>"Selecciona un estado"
+              ])
+        </div>
         <div class="col-12 text-center">
             <span>Descripción</span>
         </div>
         <div class="col-12 my-2">
-            <textarea name="descripcion"></textarea>
+            <textarea name="descripcion">
+                {{isset($ponente)?$ponente->descripcion:old('descripcion')}}
+            </textarea>
         </div>
         <div class="col-12">
             <img id="img-ponente" src="" alt="">

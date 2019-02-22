@@ -39,7 +39,47 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Patrocinador extends Model
 {
-
     protected $table = "patrocinador";
-    public $timestamps=false;
+    public $timestamps = false;
+
+    protected $fillable = [
+        "r_social",
+        "nom_contacto",
+        "correo",
+        "telefono",
+        "descripcion",
+        "url",
+        "fk_id_estado",
+    ];
+
+    public static function rules()
+    {
+        return [
+            "r_social" => "required",
+            "correo" => "required|email",
+            "image_url" => "required|file",
+            "descripcion" => "required",
+            "url" => "required",
+            "fk_id_estado" => "required",
+        ];
+    }
+
+    public static function messages()
+    {
+        return [
+            "r_social.required" => "El nombre es requerido",
+            "correo.required" => "El correo es requerido",
+            "correo.email" => "Imgrese un email válido",
+            "image_url.required" => "Ingrese la imágen",
+            "image_url.file" => "Imgrese un archivo válido",
+            "descripcion.required" => "La descripción es requerida",
+            "url.required" => "La url es requerida",
+            "fk_id_estado.required" => "El estado es requerido",
+        ];
+    }
+
+    public static function asMap()
+    {
+        return self::pluck("r_social", 'id');
+    }
 }

@@ -25,7 +25,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $telefono
  * @property string $direccion
  * @property string $descripcion
- * @property string $empresa
  * @property string|null $image_url
  * @property int $fk_id_estado
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Ponente whereCorreo($value)
@@ -38,6 +37,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Ponente whereTelefono($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Ponente whereUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Ponente whereImageUrl($value)
+ * @property int $fk_id_patrocinador
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Ponente whereFkIdPatrocinador($value)
  */
 class Ponente extends Model
 {
@@ -49,9 +50,9 @@ class Ponente extends Model
         "telefono",
         "direccion",
         "descripcion",
-        "empresa",
         "image_url",
         "fk_id_estado",
+        "fk_id_patrocinador",
     ];
     public $timestamps = false;
 

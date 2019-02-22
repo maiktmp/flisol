@@ -930,7 +930,7 @@
     <table id="234" parent="3" name="evento">
       <Collation>utf8mb4_unicode_ci</Collation>
     </table>
-    <table id="235" parent="3" name="evento_tiene_patrocinador">
+    <table id="235" parent="3" name="evento_tiene_ponente">
       <Collation>utf8mb4_unicode_ci</Collation>
     </table>
     <table id="236" parent="3" name="institucion">
@@ -1092,18 +1092,18 @@
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="267" parent="235" name="fk_id_patrocinador">
+    <column id="267" parent="235" name="fk_id_ponente">
       <Position>3</Position>
       <DataType>int(10) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="268" parent="235" name="evento_tiene_patrocinador_fk_id_evento_foreign">
+    <index id="268" parent="235" name="evento_tiene_ponente_fk_id_evento_foreign">
       <ColNames>fk_id_evento</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="269" parent="235" name="evento_tiene_patrocinador_fk_id_patrocinador_foreign">
-      <ColNames>fk_id_patrocinador</ColNames>
+    <index id="269" parent="235" name="evento_tiene_ponente_fk_id_ponente_foreign">
+      <ColNames>fk_id_ponente</ColNames>
       <Type>btree</Type>
     </index>
     <key id="270" parent="235" name="PRIMARY">
@@ -1111,16 +1111,16 @@
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="271" parent="235" name="evento_tiene_patrocinador_fk_id_evento_foreign">
+    <foreign-key id="271" parent="235" name="evento_tiene_ponente_fk_id_evento_foreign">
       <ColNames>fk_id_evento</ColNames>
       <RefSchemaName>flisol</RefSchemaName>
       <RefTableName>evento</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="272" parent="235" name="evento_tiene_patrocinador_fk_id_patrocinador_foreign">
-      <ColNames>fk_id_patrocinador</ColNames>
+    <foreign-key id="272" parent="235" name="evento_tiene_ponente_fk_id_ponente_foreign">
+      <ColNames>fk_id_ponente</ColNames>
       <RefSchemaName>flisol</RefSchemaName>
-      <RefTableName>patrocinador</RefTableName>
+      <RefTableName>ponente</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
     <column id="273" parent="236" name="id">
@@ -1328,25 +1328,21 @@
     <column id="308" parent="240" name="direccion">
       <Position>5</Position>
       <DataType>varchar(1000)|0s</DataType>
-      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="309" parent="240" name="descripcion">
       <Position>6</Position>
       <DataType>varchar(1000)|0s</DataType>
-      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="310" parent="240" name="empresa">
       <Position>7</Position>
       <DataType>varchar(1000)|0s</DataType>
-      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="311" parent="240" name="url">
+    <column id="311" parent="240" name="image_url">
       <Position>8</Position>
       <DataType>varchar(1000)|0s</DataType>
-      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="312" parent="240" name="fk_id_estado">
@@ -1355,166 +1351,182 @@
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="313" parent="240" name="ponente_fk_id_estado_foreign">
+    <column id="313" parent="240" name="fk_id_patrocinador">
+      <Position>10</Position>
+      <DataType>int(10) unsigned|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="314" parent="240" name="ponente_fk_id_estado_foreign">
       <ColNames>fk_id_estado</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="314" parent="240" name="PRIMARY">
+    <index id="315" parent="240" name="ponente_fk_id_patrocinador_foreign">
+      <ColNames>fk_id_patrocinador</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="316" parent="240" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="315" parent="240" name="ponente_fk_id_estado_foreign">
+    <foreign-key id="317" parent="240" name="ponente_fk_id_estado_foreign">
       <ColNames>fk_id_estado</ColNames>
       <RefSchemaName>flisol</RefSchemaName>
       <RefTableName>estado</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="316" parent="241" name="id">
+    <foreign-key id="318" parent="240" name="ponente_fk_id_patrocinador_foreign">
+      <ColNames>fk_id_patrocinador</ColNames>
+      <RefSchemaName>flisol</RefSchemaName>
+      <RefTableName>patrocinador</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="319" parent="241" name="id">
       <Position>1</Position>
       <DataType>int(10) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="317" parent="241" name="nombre">
+    <column id="320" parent="241" name="nombre">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="318" parent="241" name="PRIMARY">
+    <key id="321" parent="241" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="319" parent="242" name="id">
+    <column id="322" parent="242" name="id">
       <Position>1</Position>
       <DataType>int(10) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="320" parent="242" name="edificio">
+    <column id="323" parent="242" name="edificio">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="321" parent="242" name="aula">
+    <column id="324" parent="242" name="aula">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="322" parent="242" name="PRIMARY">
+    <key id="325" parent="242" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="323" parent="243" name="id">
+    <column id="326" parent="243" name="id">
       <Position>1</Position>
       <DataType>int(10) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="324" parent="243" name="nombre">
+    <column id="327" parent="243" name="nombre">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="325" parent="243" name="edad">
+    <column id="328" parent="243" name="edad">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="326" parent="243" name="app">
+    <column id="329" parent="243" name="app">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="327" parent="243" name="apm">
+    <column id="330" parent="243" name="apm">
       <Position>5</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="328" parent="243" name="correo">
+    <column id="331" parent="243" name="correo">
       <Position>6</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="329" parent="243" name="sexo">
+    <column id="332" parent="243" name="sexo">
       <Position>7</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="330" parent="243" name="QR">
+    <column id="333" parent="243" name="QR">
       <Position>8</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="331" parent="243" name="QR_url">
+    <column id="334" parent="243" name="QR_url">
       <Position>9</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="332" parent="243" name="created_at">
+    <column id="335" parent="243" name="created_at">
       <Position>10</Position>
       <DataType>timestamp|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="333" parent="243" name="updated_at">
+    <column id="336" parent="243" name="updated_at">
       <Position>11</Position>
       <DataType>timestamp|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="334" parent="243" name="fk_id_municipio">
+    <column id="337" parent="243" name="fk_id_municipio">
       <Position>12</Position>
       <DataType>int(10) unsigned|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="335" parent="243" name="fk_id_institucion">
+    <column id="338" parent="243" name="fk_id_institucion">
       <Position>13</Position>
       <DataType>int(10) unsigned|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="336" parent="243" name="fk_id_discapacidad">
+    <column id="339" parent="243" name="fk_id_discapacidad">
       <Position>14</Position>
       <DataType>int(10) unsigned|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="337" parent="243" name="usuario_fk_id_municipio_foreign">
+    <index id="340" parent="243" name="usuario_fk_id_municipio_foreign">
       <ColNames>fk_id_municipio</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="338" parent="243" name="usuario_fk_id_institucion_foreign">
+    <index id="341" parent="243" name="usuario_fk_id_institucion_foreign">
       <ColNames>fk_id_institucion</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="339" parent="243" name="usuario_fk_id_discapacidad_foreign">
+    <index id="342" parent="243" name="usuario_fk_id_discapacidad_foreign">
       <ColNames>fk_id_discapacidad</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="340" parent="243" name="PRIMARY">
+    <key id="343" parent="243" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="341" parent="243" name="usuario_fk_id_municipio_foreign">
+    <foreign-key id="344" parent="243" name="usuario_fk_id_municipio_foreign">
       <ColNames>fk_id_municipio</ColNames>
       <RefSchemaName>flisol</RefSchemaName>
       <RefTableName>municipio</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="342" parent="243" name="usuario_fk_id_institucion_foreign">
+    <foreign-key id="345" parent="243" name="usuario_fk_id_institucion_foreign">
       <ColNames>fk_id_institucion</ColNames>
       <RefSchemaName>flisol</RefSchemaName>
       <RefTableName>institucion</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="343" parent="243" name="usuario_fk_id_discapacidad_foreign">
+    <foreign-key id="346" parent="243" name="usuario_fk_id_discapacidad_foreign">
       <ColNames>fk_id_discapacidad</ColNames>
       <RefSchemaName>flisol</RefSchemaName>
       <RefTableName>discapacidad</RefTableName>

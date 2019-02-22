@@ -19,7 +19,12 @@
     <div id="navCollapse" class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto justify-content-center">
             <li class="nav-item active">
-                <a class="nav-link nav-link-text active" href="#">Ponentes</a>
+                <a class="nav-link nav-link-text active" href="{{route('index_ponente')}}">Ponentes</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav mr-auto justify-content-center">
+            <li class="nav-item active">
+                <a class="nav-link nav-link-text active" href="{{route('index_patrocinador')}}">Patrocinadores</a>
             </li>
         </ul>
     </div>

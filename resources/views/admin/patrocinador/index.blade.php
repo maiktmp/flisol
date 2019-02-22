@@ -1,5 +1,5 @@
 <?php
-/* @var $patrocinador \App\Models\Patrocinador*/
+/* @var $patrocinador \App\Models\Patrocinador */
 ?>
 @extends('templates.main-admin')
 
@@ -10,11 +10,11 @@
                 <div class="card">
                     <div class="card-head mt-2">
                         <div class="row">
-                            <div class="col-12 text-center"><h3>Ponentes</h3></div>
+                            <div class="col-12 text-center"><h3>Patrocinadores</h3></div>
                             <div class="col-12 text-center">
                                 <a class="btn btn-info"
-                                   href="{{route('ponente_create')}}"
-                                   role="button">Crear ponente</a>
+                                   href="{{route('sponsort_create')}}"
+                                   role="button">Crear patrocinador</a>
                             </div>
                         </div>
                     </div>
@@ -34,15 +34,14 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @forelse($ponentes as $ponente)
+                                        @forelse($patrocinadores as $patrocinador)
                                             <tr>
-                                                <td class="text-center">{{$ponente->id}}</td>
-                                                <td class="text-center">{{$ponente->nombre}}</td>
-                                                <td class="text-center">{{$ponente->correo}}</td>
-                                                <td class="text-center">{{$ponente->telefono}}</td>
-                                                <td class="text-center">{{$ponente->empresa}}</td>
+                                                <td class="text-center">{{$patrocinador->id}}</td>
+                                                <td class="text-center">{{$patrocinador->r_social}}</td>
+                                                <td class="text-center">{{$patrocinador->correo}}</td>
+                                                <td class="text-center">{{$patrocinador->telefono}}</td>
                                                 <td class="text-center">
-                                                    <a href="{{route('ponente_update',["ponenteId"=>$ponente->id])}}">
+                                                    <a href="{{route('sponsort_update',["sponsortId"=>$patrocinador->id])}}">
                                                         <i class="fas fa-pencil-alt text-success"></i>
                                                     </a>
                                                     &nbsp;&nbsp;&nbsp;
@@ -50,7 +49,7 @@
                                             </tr>
                                         @empty
                                             <tr>
-                                                <td colspan="5" class="text-center">Sin ponentes registrados</td>
+                                                <td colspan="5" class="text-center">Sin patrocinadores registrados</td>
                                             </tr>
                                         @endforelse
                                         </tbody>

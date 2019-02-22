@@ -10,22 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
-
-
-/**
-*=======================================
-*          Admin Routes
-*=======================================
-*/
-
 /**
 *=======================================
 *          Ponente Routes
 *=======================================
 */
-Route::get('/',
+Route::get('/ponente/index',
 'PonenteController@index')
 ->name("index_ponente");
 
@@ -44,6 +34,31 @@ Route::get('/ponente/{ponenteId}/update',
 Route::post('/ponente/{ponenteId}/update',
 'PonenteController@updatePost')
 ->name("ponente_update_post");
+
+/**
+*=======================================
+*          Patrocinador Routes
+*=======================================
+*/
+Route::get('/sponsort/index',
+'PatrocinadorController@index')
+->name("index_patrocinador");
+
+Route::view('/sponsort/create',
+'admin.patrocinador.create')
+->name('sponsort_create');
+
+Route::post('/sponsort/create',
+'PatrocinadorController@createPost')
+->name('sponsort_create_post');
+
+Route::get('/sponsort/{sponsortId}/update',
+'PatrocinadorController@update')
+->name("sponsort_update");
+
+Route::post('/sponsort/{sponsortId}/update',
+'PatrocinadorController@updatePost')
+->name("sponsort_update_post");
 
 
 

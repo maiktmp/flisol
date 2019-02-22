@@ -85,7 +85,7 @@ class UsuarioController extends Controller
             'nombre' => 'required|max:255',
             'app' => 'required|max:255',
             'apm' => 'required|max:255',
-            'edad' => 'required|integer|max:99|min:10',
+            'edad' => 'required|integer',
 //            'correo' => 'required|email|unique:usuario,correo'
         ];
         $userId = $request->input('userId', 0);

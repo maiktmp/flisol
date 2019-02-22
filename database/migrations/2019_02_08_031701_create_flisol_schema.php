@@ -19,12 +19,10 @@ class CreateFlisolSchema extends Migration
             $table->increments('id');
             $table->string('nombre');
         });
-
         Schema::create('discapacidad', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
         });
-
         Schema::create('municipio', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
@@ -80,7 +78,7 @@ class CreateFlisolSchema extends Migration
             $table->string('correo');
             $table->string('telefono');
             $table->string('image_url', 1000);
-            $table->string('descripcion', 1000);
+            $table->text('descripcion');
             $table->string('url', 1000);
             $table->unsignedInteger('fk_id_estado');
 
@@ -95,11 +93,10 @@ class CreateFlisolSchema extends Migration
             $table->string('correo');
             $table->string('telefono');
             $table->string('direccion', 1000)->nullable();
-            $table->string('descripcion', 1000)->nullable();
-            $table->string('empresa', 1000)->nullable();
+            $table->text('descripcion')->nullable();
             $table->string('image_url', 1000)->nullable();
             $table->unsignedInteger('fk_id_estado');
-            $table->unsignedInteger('fk_id_patrocinador');
+            $table->unsignedInteger('fk_id_patrocinador')->nullable();
 
             $table->foreign('fk_id_estado')
                 ->references('id')
@@ -151,7 +148,6 @@ class CreateFlisolSchema extends Migration
                 ->references('id')
                 ->on('ponente');
         });
-
     }
 
     /**
@@ -161,7 +157,7 @@ class CreateFlisolSchema extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('evento_tiene_patrocinador');
+        Schema::dropIfExists('evento_tiene_ponente');
         Schema::dropIfExists('evento');
         Schema::dropIfExists('tipo_evento');
         Schema::dropIfExists('ubicacion');

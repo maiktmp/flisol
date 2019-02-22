@@ -23,10 +23,8 @@
                         "img_url" => $ponente->image_url,
                     ])
                 @empty
-                    <div class="row">
-                        <div class="col-12 text-center">
-                            <h2 class="text-center">Espera a nuestros geniales ponentes.</h2>
-                        </div>
+                    <div class="col-12 text-center">
+                        <h2 class="text-center">Espera a nuestros geniales ponentes.</h2>
                     </div>
                 @endforelse
             </div>

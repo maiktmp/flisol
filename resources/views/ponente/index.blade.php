@@ -1,6 +1,6 @@
 @php
-/* @var $ponente \App\Models\Ponente*/
-        @endphp
+    /* @var $ponente \App\Models\Ponente*/
+@endphp
 @extends('templates.main')
 
 @push("css")
@@ -18,15 +18,20 @@
                 @forelse($ponentes as $ponente)
                     @include("ponente._card",[
                         "name" => $ponente->nombre,
+                        "id" => $ponente->id,
                         "sponsor" => $ponente->empresa,
                         "img_url" => $ponente->image_url,
                     ])
-                    @empty
-                    @endforelse
+                @empty
+                @endforelse
             </div>
         </div>
     </div>
-<!--Modal-->
+    <input type="hidden" value="{{route("ponente_view",["ponenteId"=>"FAKE_ID"])}}" id="inp-url-ponente-view">
+@endsection
+
+@section("after_modal")
+    <!--Modal-->
     <div class="modal fade" id="modal-profile">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -36,26 +41,27 @@
                 </div>
                 <div class="modal-body">
                     <div class="container">
-                        <div class="card">
+                        <div class="card card-modal">
                             <div class="card-header">Ponente</div>
                             <div class="card-body">
-                                <div class="row"  style="padding-left: 30px; padding-right: 10px;">
-                                    <div class="col-lg-1"></div>
-                                    <div class="col-lg-3">
-                                        <div class="thumbnail paneles centrar centrar-vertical-padre">
-                                            <img src="img/fotoProfesor.png" class="centrar-vertical-hijo">
+                                <div class="row" style="padding-left: 30px; padding-right: 10px;">
+                                    <div class="col-lg-4 offset-1">
+                                        <div class="centrar centrar-vertical-padre">
+                                            <img width="100%" src="{{asset("")}}" class="centrar-vertical-hijo" id="img-ponente">
                                         </div>
                                     </div>
-                                    <div class="col-lg-7">
+                                    <div class="col-lg-6">
                                         <div class="row">
                                             <div class="col-lg-1"></div>
                                             <div class="col-lg-11">
-                                                <label  class="small">Nombre: </label>
+                                                <label class="small">Nombre: </label>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
-                                                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                                            <span class="input-group-text"><i
+                                                                        class="fas fa-user"></i></span>
                                                     </div>
-                                                    <input type="text"
+                                                    <input id="inp-ponente-nombre"
+                                                           type="text"
                                                            class="form-control bg-inp-white"
                                                            readonly="true">
                                                 </div>
@@ -64,12 +70,14 @@
                                         <div class="row">
                                             <div class="col-lg-1"></div>
                                             <div class="col-lg-11">
-                                                <label  class="small">Empresa: </label>
+                                                <label class="small">Empresa: </label>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
-                                                        <span class="input-group-text"><i class="fas fa-university"></i></span>
+                                                            <span class="input-group-text"><i
+                                                                        class="fas fa-university"></i></span>
                                                     </div>
-                                                    <input type="text"
+                                                    <input id="inp-ponente-sponsor"
+                                                           type="text"
                                                            class="form-control bg-inp-white"
                                                            readonly="true">
                                                 </div>
@@ -78,38 +86,35 @@
                                         <div class="row">
                                             <div class="col-lg-1"></div>
                                             <div class="col-lg-11">
-                                                <label  class="small">Contacto: </label>
+                                                <label class="small">Contacto: </label>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
-                                                        <span class="input-group-text"><i class="fas fa-at"></i></span>
+                                                            <span class="input-group-text"><i
+                                                                        class="fas fa-at"></i></span>
                                                     </div>
-                                                    <input type="text"
+                                                    <input id="inp-ponente-contacto"
+                                                           type="text"
                                                            class="form-control bg-inp-white"
                                                            readonly="true">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-1"></div>
+
                                 </div>
                                 <br>
                                 <div class="row">
                                     <div class="col-md-1"></div>
                                     <div class="col-md-10">
                                         <label class="small">Información del ponente: </label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="fas fa-info"></i></span>
-                                            </div>
-                                            <textarea class="form-control bg-inp-white" readonly="true"></textarea>
-                                        </div>
+                                        <div id="ponente-desc"></div>
                                     </div>
                                     <div class="col-md-1"></div>
                                 </div>
                             </div>
                         </div>
                         <br>
-                        <div class="card">
+                        <div class="card card-modal">
                             <div class="card-header">Ponencias planeadas</div>
                             <div class="card-body">
                                 <table class="table table-bordered">
@@ -136,11 +141,12 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cerrar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i>
+                        Cerrar
+                    </button>
                 </div>
             </div>
         </div>
     </div>
-
 @endsection
 

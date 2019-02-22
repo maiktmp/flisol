@@ -65,5 +65,12 @@ Route::get(
     "PonenteController@index"
 )->name("ponente_index");
 
+Route::get(
+    'ponente/{ponenteId}/view',
+    "PonenteController@viewPonente"
+)->name("ponente_view");
+
+
+
 
 

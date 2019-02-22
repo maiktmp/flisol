@@ -20,6 +20,8 @@
     <footer>
         @include('components.footer')
     </footer>
+    @yield("after_modal")
+
 </div>
 <!-- Javascript -->
 @include('templates.global_js')

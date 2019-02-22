@@ -10,7 +10,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col text-center">
-                     m           @if($user===null)
+                                @if($user===null)
                                     <p style="font-size: 1.8em">
                                         Liga de registro no válida
                                     </p>

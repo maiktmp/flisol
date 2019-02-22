@@ -8,7 +8,7 @@
 @endpush
 
 @push("scripts")
-    <script type="text/javascript" src="{{asset('/js/funcProfiles.js')}}"></script>
+    <script type="text/javascript" src="{{asset('/js/ponente/funcProfiles.js')}}"></script>
 @endpush
 
 @section('content')

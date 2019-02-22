@@ -27,6 +27,7 @@ class PonenteController extends Controller
         if ($ponente === null) {
             $gr->message = "No se encontró el ponente";
         } else {
+            $ponente->patrocinador;
             $gr->message = "Se encontró el ponente";
             $gr->success = true;
             $gr->data = $ponente;

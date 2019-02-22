@@ -52,7 +52,6 @@ class Ponente extends Model
         "descripcion",
         "image_url",
         "fk_id_estado",
-        "fk_id_patrocinador",
     ];
     public $timestamps = false;
 
@@ -78,6 +77,15 @@ class Ponente extends Model
         return $this->belongsTo(
             Estado::class,
             'fk_id_estado',
+            'id'
+        );
+    }
+
+    public function patrocinador()
+    {
+        return $this->belongsTo(
+            Patrocinador::class,
+            'fk_id_patrocinador',
             'id'
         );
     }

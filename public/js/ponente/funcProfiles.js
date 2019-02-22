@@ -1,4 +1,4 @@
-var rutaOriginal=$("#img-ponente").attr("src");
+var rutaOriginal = $("#img-ponente").attr("src");
 
 $(document).ready(function () {
     $("#modal-profile").modal("hide");
@@ -16,7 +16,11 @@ function clickButtonProfile(id) {
             if (response.success) {
                 $("#img-ponente").attr("src", rutaOriginal + response.data.image_url);
                 $("#inp-ponente-nombre").val(response.data.nombre);
-                $("#inp-ponente-sponsor").val(response.data.empresa);
+                if (response.data.patrocinador != null) {
+                    $("#inp-ponente-sponsor").val(response.data.patrocinador.r_social);
+                } else {
+                    $("#inp-ponente-sponsor").val("Independiente");
+                }
                 $("#ponente-desc").html(response.data.descripcion);
                 $("#inp-ponente-contacto").val(response.data.correo);
                 $("#modal-profile").modal("show");

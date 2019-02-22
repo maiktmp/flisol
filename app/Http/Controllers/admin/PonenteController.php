@@ -27,6 +27,11 @@ class PonenteController extends Controller
         try {
             $ponente = new Ponente();
             $ponente->fill($request->all());
+            if ($request->input("fk_id_patrocinador ", 0) === 0) {
+                $ponente->fk_id_patrocinador = null;
+            } else {
+                $ponente->fk_id_patrocinador = $request->input("fk_id_patrocinador ");
+            }
             $ponente->saveOrFail();
             $fileOk = $request->hasFile('image_url') &&
                 $request->file('image_url')->isValid();
@@ -54,6 +59,11 @@ class PonenteController extends Controller
         try {
             $ponente = Ponente::find($ponenteId);
             $ponente->fill($request->all());
+            if ($request->input("fk_id_patrocinador ", 0) === 0) {
+                $ponente->fk_id_patrocinador = null;
+            } else {
+                $ponente->fk_id_patrocinador = $request->input("fk_id_patrocinador ");
+            }
             $ponente->saveOrFail();
             if ($request->file('image_url', null) !== null) {
                 $fileOk = $request->hasFile('image_url') &&

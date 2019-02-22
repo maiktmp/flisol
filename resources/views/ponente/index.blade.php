@@ -23,6 +23,11 @@
                         "img_url" => $ponente->image_url,
                     ])
                 @empty
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <h2>Espera a nuestros geniales ponentes.</h2>
+                        </div>
+                    </div>
                 @endforelse
             </div>
         </div>
@@ -47,7 +52,8 @@
                                 <div class="row" style="padding-left: 30px; padding-right: 10px;">
                                     <div class="col-lg-4 offset-1">
                                         <div class="centrar centrar-vertical-padre">
-                                            <img width="100%" src="{{asset("")}}" class="centrar-vertical-hijo" id="img-ponente">
+                                            <img width="100%" src="{{asset("")}}" class="centrar-vertical-hijo"
+                                                 id="img-ponente">
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
@@ -58,7 +64,7 @@
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
                                                             <span class="input-group-text"><i
-                                                                        class="fas fa-user"></i></span>
+                                                                    class="fas fa-user"></i></span>
                                                     </div>
                                                     <input id="inp-ponente-nombre"
                                                            type="text"
@@ -74,7 +80,7 @@
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
                                                             <span class="input-group-text"><i
-                                                                        class="fas fa-university"></i></span>
+                                                                    class="fas fa-university"></i></span>
                                                     </div>
                                                     <input id="inp-ponente-sponsor"
                                                            type="text"
@@ -90,7 +96,7 @@
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
                                                             <span class="input-group-text"><i
-                                                                        class="fas fa-at"></i></span>
+                                                                    class="fas fa-at"></i></span>
                                                     </div>
                                                     <input id="inp-ponente-contacto"
                                                            type="text"

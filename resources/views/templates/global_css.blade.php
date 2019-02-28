@@ -12,5 +12,5 @@
 
 {{--<link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">--}}
 {{--<link rel="stylesheet" href="{{ asset('/css/fontawesome.css') }}">--}}
-<link rel="stylesheet" href="{{ asset('/css/flisol.css?v=3') }}">
+<link rel="stylesheet" href="{{ asset('/css/flisol.css?v=4') }}">
 

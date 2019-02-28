@@ -3,10 +3,10 @@
     @endphp
 
 @push('scripts')
-    <script src="{{ asset('js/usuario/_form.js') }}"></script>
     <script type="text/javascript" src="{{asset('/js/moment.min.js?v=1')}}"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/es.js"></script>
     <script type="text/javascript" src="{{asset('/js/bootstrap-material-datetimepicker.js')}}"></script>
+    <script src="{{ asset('js/usuario/_form.js?v=1') }}"></script>
 @endpush
 
 @push('css')

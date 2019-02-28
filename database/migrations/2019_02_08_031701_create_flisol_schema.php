@@ -47,7 +47,7 @@ class CreateFlisolSchema extends Migration
         Schema::create('usuario', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre')->nullable();
-            $table->integer('edad')->nullable();
+            $table->date('fechaNac')->nullable();
             $table->string('app')->nullable();
             $table->string('apm')->nullable();
             $table->string('correo');
@@ -110,6 +110,7 @@ class CreateFlisolSchema extends Migration
             $table->increments('id');
             $table->string('edificio');
             $table->string('aula');
+            $table->integer('cupo');
         });
         Schema::create('tipo_evento', function (Blueprint $table) {
             $table->increments('id');

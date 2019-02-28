@@ -9,9 +9,12 @@
 namespace App\Http\Controllers;
 
 
+use App;
 use App\Models\Institucion;
 use App\Models\Municipio;
 use App\Models\Usuario;
+use Barryvdh\DomPDF\PDF;
+use DB;
 use Hash;
 use Illuminate\Http\Request;
 use Mail;
@@ -57,12 +60,12 @@ class UsuarioController extends Controller
                 ->withInput();
         }
         Mail::send('usuario._confirmation_registration', ["user" => $user], function ($message) use ($user) {
-            $message->from('flisol@cisctoluca.com','FLISoL');
+            $message->from('flisol@cisctoluca.com', 'FLISoL');
             $message->subject('Confirmación de correo.');
             $message->to($user->correo);
         });
         return back()->withErrors([
-            "sendMail" => "Se ha enviado un correo a " . $user->correo ." por favor completa tu registro."
+            "sendMail" => "Se ha enviado un correo a " . $user->correo . " por favor completa tu registro."
         ]);
     }
 
@@ -85,7 +88,7 @@ class UsuarioController extends Controller
             'nombre' => 'required|max:255',
             'app' => 'required|max:255',
             'apm' => 'required|max:255',
-            'edad' => 'required|integer',
+            'fechaNac' => 'required|date|before:now',
 //            'correo' => 'required|email|unique:usuario,correo'
         ];
         $userId = $request->input('userId', 0);
@@ -125,10 +128,9 @@ class UsuarioController extends Controller
             'app.max' => 'Ingresaste un apellido demaciado largo.',
             'apm.required' => 'Es necesario que ingreses tu apellido.',
             'apm.max' => 'Ingresaste un apellido demaciado largo.',
-            'edad.required' => 'Es necesario que ingreses tu edad.',
-            'edad.integer' => 'Tu edad debe ser un valor entero.',
-            'edad.max' => 'Eres demaciado viejo para asistir.',
-            'edad.min' => 'Eres demaciado joven para asistir.',
+            'fechaNac.required' => 'Ingresa tu fecha de nacimiento..',
+            'fechaNac.date' => 'Ingresa un formato válido de fecha.',
+            'fechaNac.before' => 'Ingresa una fecha válida.',
             'correo.required' => 'Es necesario que ingreses tu correo.',
             'correo.email' => 'Ingresa un correo válido.',
             'correo.unique' => 'El correo ingresado ya se encuentra registrado.',
@@ -158,7 +160,6 @@ class UsuarioController extends Controller
             $institute->save();
         }
 
-
         $usuario->fill($request->all());
 
         if ($fkIdDiscapacidad !== 0) {
@@ -172,32 +173,43 @@ class UsuarioController extends Controller
         }
 
         try {
-            $usuario->saveOrFail();
-        } catch (\Throwable $e) {
+            DB::beginTransaction();
+            $usuario->save();
+            $code = $usuario->id . "-" . time();
+
+            $url = "/img/QR/" . $code . ".png";
+            QrCode::format('png')
+                ->size(1000)
+                ->generate($code, public_path() . $url);
+
+            $usuario->QR = $code;
+            $usuario->QR_url = $url;
+
+            if ($usuario->save()) {
+                DB::commit();
+                return redirect()->route('user_qr', ['userId' => $usuario->id]);
+            } else {
+                DB::rollBack();
+            }
+        } catch (\Exception $e) {
+            DB::rollBack();
             return back()
                 ->withInput()
                 ->withErrors(['general' => 'Ocurrio un error en el registro ' . " " . $e->getMessage()]);
         }
-
-        $code = $usuario->id . "-" . time();
-
-        $url = "/img/QR/" . $code . ".png";
-
-        QrCode::format('png')
-            ->size(1000)
-            ->generate($code, public_path().$url);
-
-        $usuario->QR = $code;
-        $usuario->QR_url = $url;
-        if ($usuario->save()) {
-            return redirect()->route('user_qr', ['userId' => $usuario->id]);
-        }
-
     }
 
     public function getQr($userId)
     {
         $user = Usuario::find($userId);
         return view('usuario.view_qr', ["usuario" => $user]);
+    }
+
+    public function printIdCard($userId)
+    {
+        $user = Usuario::find($userId);
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadView('usuario._gafete_view', ["usuario" => $user]);
+        return $pdf->download("gafeteFlisol.pdf");
     }
 }

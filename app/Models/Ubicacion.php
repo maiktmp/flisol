@@ -24,6 +24,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Ubicacion whereAula($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Ubicacion whereEdificio($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Ubicacion whereId($value)
+ * @property int $cupo
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Ubicacion whereCupo($value)
  */
 class Ubicacion extends Model
 {

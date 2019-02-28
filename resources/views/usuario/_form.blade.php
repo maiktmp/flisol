@@ -4,6 +4,16 @@
 
 @push('scripts')
     <script src="{{ asset('js/usuario/_form.js') }}"></script>
+    <script type="text/javascript" src="{{asset('/js/moment.min.js?v=1')}}"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/es.js"></script>
+    <script type="text/javascript" src="{{asset('/js/bootstrap-material-datetimepicker.js')}}"></script>
+@endpush
+
+@push('css')
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-datetimepicker/2.7.1/css/bootstrap-material-datetimepicker.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
 @endpush
 
 <form method="POST"
@@ -43,15 +53,25 @@
                     'value'=>old('apm')
                 ])
         </div>
-        <div class="col-sm-6 col-lg-2">
+        <div class="col-sm-12 col-lg-4">
             @input([
-                    'label' => 'Año de nacimiento',
-                    'name' => 'edad',
-                    'type'=> 'number',
-                     'value'=>old('edad')
+                    'id' => 'inp-datepicker',
+                    'label' => 'Fecha de nacimiento',
+                    'name' => 'fechaNac',
+                     'value'=>old('fechaNac')
                 ])
         </div>
-        <div class="col-sm-6 col-lg-2">
+
+        <div class="col-sm-12 col-lg-4">
+            @select([
+                    'label' => '¿Tienes alguna discapacidad? ',
+                    'name' => 'fk_id_discapacidad',
+                    'options'=>\App\Models\Discapacidad::asMap(),
+                     'selected'=> old('fk_id_discapacidad')*1,
+                    'placeHolder'=>"Ninguna",
+                ])
+        </div>
+        <div class="col-sm-12 col-lg-2">
             @select([
                     'label' => 'Sexo',
                     'name' => 'sexo',
@@ -60,15 +80,6 @@
                         "F"=>"Femenino",
                     ],
                      'selected'=>old('sexo')
-                ])
-        </div>
-        <div class="col-sm-12 col-lg-4">
-            @select([
-                    'label' => '¿Tienes alguna discapacidad? ',
-                    'name' => 'fk_id_discapacidad',
-                    'options'=>\App\Models\Discapacidad::asMap(),
-                     'selected'=> old('fk_id_discapacidad')*1,
-                    'placeHolder'=>"Ninguna",
                 ])
         </div>
         <div class="col-sm-12 mty-2 text-center">
@@ -93,14 +104,13 @@
                   'selected'=>old('fk_id_municipio')*1
               ])
         </div>
-
         <div class="col-sm-12 col-lg-4">
             @select([
                   'id'=>'select-instituto',
                   'label' => 'Institución',
                   'name' => 'fk_id_instituto',
                   'options' =>\App\Models\Institucion::asMap(old('fk_id_municipio')*1),
-                  'selected'=>old('fk_id_instituto')
+                  'selected'=>old('fk_id_instituto')*1
               ])
         </div>
         <input name="userId" type="hidden" value="{{$user->id}}">

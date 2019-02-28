@@ -22,7 +22,6 @@ use Illuminate\Database\Eloquent\Model;
  * @mixin \Eloquent
  * @property int $id
  * @property string $nombre
- * @property int $edad
  * @property string $correo
  * @property string $QR
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -49,6 +48,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Usuario whereFkIdDiscapacidad($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Usuario whereSexo($value)
  * @property-read mixed $full_name
+ * @property string|null $fechaNac
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Usuario whereFechaNac($value)
  */
 class Usuario extends Model
 {
@@ -58,7 +59,7 @@ class Usuario extends Model
 
     protected $fillable = [
         'nombre',
-        'edad',
+        'fechaNac',
         'correo',
         'fk_id_municipio',
         'sexo',

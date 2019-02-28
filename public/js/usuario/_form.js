@@ -69,6 +69,12 @@ $(document).ready(function () {
         }
     });
 
+    $('#inp-datepicker').bootstrapMaterialDatePicker({
+        time: false,
+        lang: 'es',
+        maxDate: moment(),
+        format: 'Y-MM-DD'
+    });
 });
 
 

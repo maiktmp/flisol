@@ -39,6 +39,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Ponente whereImageUrl($value)
  * @property int $fk_id_patrocinador
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Ponente whereFkIdPatrocinador($value)
+ * @property-read \App\Models\Patrocinador|null $patrocinador
  */
 class Ponente extends Model
 {

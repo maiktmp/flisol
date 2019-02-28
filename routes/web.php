@@ -44,6 +44,10 @@ Route::get('/user/{userId}/QR',
     'UsuarioController@getQr')
     ->name('user_qr');
 
+Route::get('/user/{userId}/identified_card',
+    'UsuarioController@printIdCard')
+    ->name('user_identified_card');
+
 Route::get(
     '/user/registry/state/{stateId}/get_city',
     'UsuarioController@getMunicipioByEstado'

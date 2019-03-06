@@ -48,6 +48,34 @@ nav {
 }
 
 /*
+Carousel
+*/
+
+.centrar{
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.centrar-vertical-hijo{
+    padding: 10% 0;
+}
+
+.centrar-vertical-padre{
+    padding: 5% 0;
+}
+
+.carousel-inner > .carousel-item > a > img {
+    object-fit: scale-down;
+    height: 50vh;
+    width: 100%;
+}
+
+.carousel-inner {
+    background-image: linear-gradient(to right, rgb(26, 37, 47), rgba(26, 37, 47,.2), rgb(26, 37, 47));
+}
+
+/*
 ==================================
             Colors
 ==================================

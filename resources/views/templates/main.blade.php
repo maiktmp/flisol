@@ -15,13 +15,13 @@
         @include('components.navbar')
     </header>
     <section class="animated fadeIn slow">
-            @yield('content')
+        @yield('content')
+        <div class="my-3">
+            @include('components.sponsors')
+        </div>
     </section>
-    <footer>
-        @include('components.footer')
-    </footer>
+    @include('components.footer')
     @yield("after_modal")
-
 </div>
 <!-- Javascript -->
 @include('templates.global_js')

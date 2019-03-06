@@ -74,6 +74,16 @@ Route::get(
     "PonenteController@viewPonente"
 )->name("ponente_view");
 
+/**
+ *=======================================
+ *          Sponsor Routes
+ *=======================================
+ */
+
+Route::get(
+    'patrocinador/get_all',
+    "SponsorController@getAll"
+)->name("sponsor_get_all");
 
 
 

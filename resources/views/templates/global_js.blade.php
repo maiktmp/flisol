@@ -5,6 +5,7 @@
         integrity="sha384-pjaaA8dDz/5BgdFUPX6M/9SUZv4d12SUPF0axWc+VRZkx5xU3daN+lYb49+Ax+Tl"
         crossorigin="anonymous"></script> -->
 
-<script src="{{ asset('js/jquery.js') }}"></script>
-<script src="{{ asset('js/boostrap.js') }}"></script>
+<script src="{{ asset('/js/jquery.js') }}"></script>
+<script src="{{ asset('/js/boostrap.js') }}"></script>
+<script src="{{ asset('/js/global/carouselSponsors.js') }}"></script>
 {{--<script src="{{ asset('js/global/inputAnimation.js') }}"></script>--}}

@@ -41,6 +41,9 @@ class Patrocinador extends Model
 {
     protected $table = "patrocinador";
     public $timestamps = false;
+    protected $appends = [
+        "absolute_image_url"
+    ];
 
     protected $fillable = [
         "r_social",
@@ -81,5 +84,10 @@ class Patrocinador extends Model
     public static function asMap()
     {
         return self::pluck("r_social", 'id');
+    }
+
+    public function getAbsoluteImageUrlAttribute()
+    {
+        return asset($this->image_url);
     }
 }

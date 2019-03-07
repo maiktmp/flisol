@@ -1,12 +1,12 @@
 <nav class="navbar navbar-expand-lg navbar-light">
     <a class="navbar-brand navbar-brand-text" href="{{route('welcome')}}" style="">
         <div style="
-            background-image: url({{asset('/img/flisolChida.png')}});
+            background-image: url({{asset('/img/FLISoL.png')}});
             background-repeat: no-repeat;
             background-size: contain;
             background-position: center;
-            width: 150px;
-            height: 50px
+            width: 300px;
+            height: 80px
             ">
         </div>
         {{--        <img src="{{asset('/img/flisolChida.png')}}" id="img-brand-flisol">--}}

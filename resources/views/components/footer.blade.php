@@ -1,8 +1,8 @@
 @php
     /* @var $sponsor \App\Models\Ponente*/
 @endphp
-
 <footer class="login-footer">
+    @include('components.sponsors')
     <div>
         <label>
             Instituto Tecnológico de Toluca | <a href="//www.ittoluca.edu.mx" target="_blank">www.ittoluca.edu.mx</a>

@@ -13,7 +13,6 @@ use App;
 use App\Models\Institucion;
 use App\Models\Municipio;
 use App\Models\Usuario;
-use Barryvdh\DomPDF\PDF;
 use DB;
 use Hash;
 use Illuminate\Http\Request;
@@ -85,9 +84,9 @@ class UsuarioController extends Controller
     public function fishRegistryPost(Request $request)
     {
         $validationRules = [
-            'nombre' => 'required|max:255',
-            'app' => 'required|max:255',
-            'apm' => 'required|max:255',
+            'nombre' => 'required|max:255|regex:/^[\pL\pM\p{Zs}.-]+$/u',
+            'app' => 'required|max:255|regex:/^[\pL\pM\p{Zs}.-]+$/u',
+            'apm' => 'required|max:255|regex:/^[\pL\pM\p{Zs}.-]+$/u',
             'fechaNac' => 'required|date|before:now',
 //            'correo' => 'required|email|unique:usuario,correo'
         ];
@@ -124,10 +123,13 @@ class UsuarioController extends Controller
         $validationMessages = [
             'nombre.required' => 'Es necesario que ingreses tu nombre.',
             'nombre.max' => 'Ingresaste un nombre demaciado largo.',
+            'nombre.regex' => 'Solo se permiten letras.',
             'app.required' => 'Es necesario que ingreses tu apellido.',
             'app.max' => 'Ingresaste un apellido demaciado largo.',
+            'app.regex' => 'Solo se permiten letras.',
             'apm.required' => 'Es necesario que ingreses tu apellido.',
             'apm.max' => 'Ingresaste un apellido demaciado largo.',
+            'apm.regex' => 'Solo se permiten letras.',
             'fechaNac.required' => 'Ingresa tu fecha de nacimiento..',
             'fechaNac.date' => 'Ingresa un formato válido de fecha.',
             'fechaNac.before' => 'Ingresa una fecha válida.',
@@ -210,6 +212,7 @@ class UsuarioController extends Controller
         $user = Usuario::find($userId);
         $pdf = App::make('dompdf.wrapper');
         $pdf->loadView('usuario._gafete_view', ["usuario" => $user]);
-        return $pdf->download("gafeteFlisol.pdf");
+        return $pdf->stream("gafeteFlisol.pdf");
+//        return $pdf->download("gafeteFlisol.pdf");
     }
 }

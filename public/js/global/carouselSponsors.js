@@ -33,7 +33,7 @@ function createItem(sponsors) {
     sponsors.forEach(function (sponsor) {
         var $a = $("<a>", {href: "#", title: "Image " + sponsor.id, class: "col"});
         var $img = $("<img>", {
-            class: "img-fluid mx-auto d-block", src: sponsor.absolute_image_url,
+            class: "img-fluid mx-auto d-block rounded-circle", src: sponsor.absolute_image_url,
             alt: "Sponsor " + sponsor.id,
             onclick: "console.log(this.alt)"
         });

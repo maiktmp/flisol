@@ -16,9 +16,6 @@
     </header>
     <section class="animated fadeIn slow">
         @yield('content')
-        <div class="my-3">
-            @include('components.sponsors')
-        </div>
     </section>
     @include('components.footer')
     @yield("after_modal")

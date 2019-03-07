@@ -35,22 +35,46 @@
             font-family: Elegance, sans-serif;
         }
 
+
     </style>
 </head>
 <body>
-<div style="height: 200px"></div>
-<div class="row my-5">
-    <div class="col-5 offset-3">
-        <div class="table text-center">
-            <h1>FLISoL</h1>
-            <h3>{{\Carbon\Carbon::now()->format('Y')}}</h3>
+<div style=" margin-left: 125px;" class=" table row my-5">
+    <div class="text-center table" style=" height: 200px; width: 450px;padding-top: 20px;padding-left: 20px">
+        <div class="text-center" style="display:inline-block;width: 200px;margin-top: -5px">
+            <img src="{{asset('/img/FLISoL.png')}}"
+                 width="100px"
+                 alt="img-qr"
+                 style="margin: 5px; display: inline"
+            >
+            <br>
+            <span style="font-size: 10px; color: #94c11f">
+                        FESTIVAL LATINOAMERICANO DE INSTALACIÓN DE SOFTWARE LIBRE
+                    </span>
+            <br>
+            <span style="font-size: 20px; color: #94c11f">
+                      {{$usuario->full_name}}
+                    </span>
+        </div>
+        <div class="text-center" style="display:inline-block;width: 200px;margin-top: 15px">
+            <img src="{{asset("/img/logo.png")}}"
+                 width="50px"
+                 alt="img-qr"
+                 style="margin: 5px; display: inline"
+            >
+            <img src="{{asset("/img/cisc.png")}}"
+                 width="70px"
+                 alt="img-qr"
+                 style="margin-left: 20px; margin-top:5px;display: inline"
+            >
             <br>
             <img src="{{asset($usuario->QR_url)}}"
-                 width="250px"
+                 width="180px"
+                 height="160px"
                  alt="img-qr"
-                 style="margin: 5px"
+                 style="margin: 5px;"
             >
-            <h4>{{$usuario->full_name}}</h4>
+            <span style="position: absolute;left: 350px;top: 220px;font-size: 12px;width: 200px"><b>Folio:</b>{{$usuario->QR}}</span>
         </div>
     </div>
 </div>

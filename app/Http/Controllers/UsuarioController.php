@@ -198,7 +198,7 @@ class UsuarioController extends Controller
                     \Storage::put("/gafetes/" . $code . ".pdf", $render);
                     Mail::send('usuario._email_gafete', [], function ($message) use ($render, $usuario, $code) {
                         $message->from('flisol@cisctoluca.com', 'FLISoL');
-                        $message->subject('Confirmación de correo.');
+                        $message->subject('Gafete FLISoL.');
                         $message->to($usuario->correo);
                         $message->attachData($render, $code . ".pdf");
                     });

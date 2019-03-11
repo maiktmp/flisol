@@ -96,6 +96,8 @@ class UsuarioController extends Controller
         $fkIdDiscapacidad = $request->input('fk_id_discapacidad', 0) * 1;
         $usuario = Usuario::find($userId);
 
+        $isSendingEmail = $usuario->QR_url === null;
+
         if ($fkIdMunicipio * 1 === 0) {
             $validationRules = array_merge(
                 $validationRules,
@@ -189,6 +191,18 @@ class UsuarioController extends Controller
 
             if ($usuario->save()) {
                 DB::commit();
+                if ($isSendingEmail) {
+                    $pdf = App::make('dompdf.wrapper');
+                    $pdf->loadView('usuario._gafete_view', ["usuario" => $usuario]);
+                    $render = $pdf->output();
+                    \Storage::put("/gafetes/" . $code . ".pdf", $render);
+                    Mail::send('usuario._email_gafete', [], function ($message) use ($render, $usuario, $code) {
+                        $message->from('flisol@cisctoluca.com', 'FLISoL');
+                        $message->subject('Confirmación de correo.');
+                        $message->to($usuario->correo);
+                        $message->attachData($render, $code . ".pdf");
+                    });
+                }
                 return redirect()->route('user_qr', ['userId' => $usuario->id]);
             } else {
                 DB::rollBack();
@@ -210,9 +224,10 @@ class UsuarioController extends Controller
     public function printIdCard($userId)
     {
         $user = Usuario::find($userId);
-        $pdf = App::make('dompdf.wrapper');
-        $pdf->loadView('usuario._gafete_view', ["usuario" => $user]);
-        return $pdf->stream("gafeteFlisol.pdf");
+//        $pdf = App::make('dompdf.wrapper');
+//        $pdf->loadView('usuario._gafete_view', ["usuario" => $user]);
+//        return $pdf->stream("gafeteFlisol.pdf");
 //        return $pdf->download("gafeteFlisol.pdf");
+        return \Storage::download("/gafetes/" . $user->QR . ".pdf");
     }
 }

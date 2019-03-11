@@ -43,16 +43,16 @@
     <div class="text-center table" style=" height: 200px; width: 450px;padding-top: 20px;padding-left: 20px">
         <div class="text-center" style="display:inline-block;width: 200px;margin-top: -5px">
             <img src="{{asset('/img/FLISoL.png')}}"
-                 width="100px"
+                 width="80px"
                  alt="img-qr"
-                 style="margin: 5px; display: inline"
+                 style="position: absolute;left: 200px;top: -50px"
             >
             <br>
             <span style="font-size: 10px; color: #94c11f">
                         FESTIVAL LATINOAMERICANO DE INSTALACIÓN DE SOFTWARE LIBRE
                     </span>
             <br>
-            <span style="font-size: 20px; color: #94c11f">
+            <span style="font-size: 18px; color: #94c11f">
                       {{$usuario->full_name}}
                     </span>
         </div>

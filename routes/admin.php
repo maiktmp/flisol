@@ -61,6 +61,32 @@ Route::post('/sponsort/{sponsortId}/update',
 ->name("sponsort_update_post");
 
 
+/**
+*=======================================
+*          Evento Routes
+*=======================================
+*/
+Route::get('/event/index',
+'EventoController@index')
+->name("index_event");
+
+Route::view('/event/create',
+'admin.event.create')
+->name('event_create');
+
+Route::post('/event/create',
+'EventoController@createPost')
+->name('event_create_post');
+
+Route::get('/event/{eventId}/update',
+'EventoController@update')
+->name("event_update");
+
+Route::post('/event/{eventId}/update',
+'EventoController@updatePost')
+->name("event_update_post");
+
+
 
 
 

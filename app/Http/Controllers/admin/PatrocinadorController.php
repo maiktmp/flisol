@@ -9,6 +9,8 @@
 namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Http\Request\CreatePatrocinadorRequest;
+use App\Http\Request\CreatePoeneteRequest;
+use App\Http\Request\UpdatePatrocinadorRequest;
 use App\Models\Patrocinador;
 use App\Models\Ponente;
 use Illuminate\Support\Carbon;
@@ -43,31 +45,31 @@ class PatrocinadorController extends Controller
         }
     }
 
-    public function update($ponenteId)
+    public function update($patrocinadorId)
     {
-        $ponente = Ponente::find($ponenteId);
-        return view('admin.ponente.update', ["ponente" => $ponente]);
+        $patrocinador = Patrocinador::find($patrocinadorId);
+        return view('admin.patrocinador.update', ["patrocinador" => $patrocinador]);
     }
 
-    public function updatePost(CreatePoeneteRequest $request, $ponenteId)
+    public function updatePost(UpdatePatrocinadorRequest $request, $patrocinadorId)
     {
         try {
-            $ponente = Ponente::find($ponenteId);
-            $ponente->fill($request->all());
-            $ponente->saveOrFail();
+            $patroinador = Patrocinador::find($patrocinadorId);
+            $patroinador->fill($request->all());
+            $patroinador->saveOrFail();
             if ($request->file('image_url', null) !== null) {
                 $fileOk = $request->hasFile('image_url') &&
                     $request->file('image_url')->isValid();
                 if ($fileOk) {
-                    $imgUrl = $this->storeFile($request->file('image_url'), $ponente->id);
-                    $ponente->image_url = $imgUrl;
+                    $imgUrl = $this->storeFile($request->file('image_url'), $patroinador->id);
+                    $patroinador->image_url = $imgUrl;
                 }
-                $ponente->saveOrFail();
+                $patroinador->saveOrFail();
             }
-            return redirect()->route("index_ponente");
+            return redirect()->route("index_patrocinador");
         } catch (\Throwable $e) {
             return back()
-                ->withErrors(["general" => "Ocurrio un error al actualizar el ponente" . " " . $e->getMessage()])
+                ->withErrors(["general" => "Ocurrio un error al actualizar el patrocinador" . " " . $e->getMessage()])
                 ->withInput();
         }
     }

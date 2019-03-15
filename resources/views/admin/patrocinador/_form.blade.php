@@ -14,6 +14,7 @@
       route('sponsort_create_post')}}"
       class="mb-3">
     @csrf
+    {{$errors}}
     <div class="row text-left">
         @if($errors->has('general'))
         <div class="alert alert-danger">

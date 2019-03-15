@@ -28,4 +28,9 @@ class TipoEvento extends Model
 
     protected $table = "tipo_evento";
     public $timestamps = false;
+
+    public static function asMap()
+    {
+        return self::pluck("nombre", "id");
+    }
 }

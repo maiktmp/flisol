@@ -32,4 +32,8 @@ class Ubicacion extends Model
     protected $table = "ubicacion";
     public $timestamps = false;
 
+    public static function asMap()
+    {
+        return self::pluck("aula", "id");
+    }
 }

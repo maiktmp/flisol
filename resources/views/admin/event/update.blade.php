@@ -10,7 +10,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col text-center">
-                                @include('admin.patrocinador._form',["patrocinador"=>$patrocinador])
+                                @include('admin.event._form',["evento"=>$event])
                             </div>
                         </div>
                     </div>
@@ -18,6 +18,5 @@
             </div>
         </div>
     </div>
-
 @endsection
 

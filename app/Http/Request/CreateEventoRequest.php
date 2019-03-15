@@ -9,10 +9,11 @@
 namespace App\Http\Request;
 
 
+use App\Models\Evento;
 use App\Models\Patrocinador;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreatePatrocinadorRequest extends FormRequest
+class CreateEventoRequest extends FormRequest
 {
     public function authorize()
     {
@@ -21,12 +22,12 @@ class CreatePatrocinadorRequest extends FormRequest
 
     public function messages()
     {
-        return Patrocinador::messages();
+        return Evento::messages();
     }
 
     public function rules()
     {
-        return array_merge(Patrocinador::rules(), ["image_url" => "required|file",]);
+        return Evento::rules();
     }
 
 }

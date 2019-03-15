@@ -60,7 +60,6 @@ class Patrocinador extends Model
         return [
             "r_social" => "required",
             "correo" => "required|email",
-            "image_url" => "required|file",
             "descripcion" => "required",
             "url" => "required",
             "fk_id_estado" => "required",

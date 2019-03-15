@@ -54,6 +54,7 @@ class Ponente extends Model
         "image_url",
         "fk_id_estado",
     ];
+
     public $timestamps = false;
 
     public static function rules()
@@ -89,5 +90,10 @@ class Ponente extends Model
             'fk_id_patrocinador',
             'id'
         );
+    }
+
+    public static function asMap()
+    {
+        return self::pluck("nombre", 'id');
     }
 }

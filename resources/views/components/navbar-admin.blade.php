@@ -27,5 +27,10 @@
                 <a class="nav-link nav-link-text active" href="{{route('index_patrocinador')}}">Patrocinadores</a>
             </li>
         </ul>
+        <ul class="navbar-nav mr-auto justify-content-center">
+            <li class="nav-item active">
+                <a class="nav-link nav-link-text active" href="{{route('index_event')}}">Eventos</a>
+            </li>
+        </ul>
     </div>
 </nav>

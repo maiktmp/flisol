@@ -86,5 +86,19 @@ Route::get(
 )->name("sponsor_get_all");
 
 
+/**
+ *=======================================
+ *          Eventos Routes
+ *=======================================
+ */
 
+Route::view(
+    'eventos/index',
+    "evento.index"
+)->name("event_index");
+
+Route::get(
+    'evetnto/get_all',
+    'EventoController@getAllEvents'
+)->name('get_all_events');
 

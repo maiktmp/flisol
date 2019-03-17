@@ -89,4 +89,22 @@ class Evento extends Model
             'fk_id_ponente'
         );
     }
+
+    public function ubicacion()
+    {
+        return $this->belongsTo(
+            Ubicacion::class,
+            'fk_id_ubicacion',
+            'id'
+        );
+    }
+
+    public function tipoEvento()
+    {
+        return $this->belongsTo(
+            TipoEvento::class,
+            'fk_id_tipo_evento',
+            'id'
+        );
+    }
 }

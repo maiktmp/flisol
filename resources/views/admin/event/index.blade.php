@@ -59,7 +59,7 @@
                                                         <i class="fas fa-pencil-alt text-success"></i>
                                                     </a>
                                                     &nbsp;&nbsp;&nbsp;
-                                                </td>k
+                                                </td>
                                             </tr>
                                         @empty
                                             <tr>

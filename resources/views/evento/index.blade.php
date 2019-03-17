@@ -7,10 +7,12 @@
 @endpush
 
 @push("scripts")
+    <script type="text/javascript" src="{{asset('/js/moment.min.js?v=1')}}"></script>
     <script type="text/javascript" src="{{asset('/js/event/timeLine.js?v=1')}}"></script>
 @endpush
 
 @section('content')
+    <input id="inp-url-get-all-events" type="hidden" value="{{route('get_all_events')}}">
     <div class="container-fluid">
         <ul id="time-line-nav" class="nav flex-column" style="left: 0;width: 10px">
             <li class="nav-item">
@@ -27,210 +29,54 @@
             </li>
         </ul>
         <div class="row">
-            <div class="col-11 offset-1">
-                <section id="timeline">
-                    <div class="tl-item">
-                        <div class="tl-bg" style="background-image: url(https://placeimg.com/801/801/nature)"></div>
-                        <div class="tl-year">
-                            <p class="f2 heading--sanSerif">2011</p>
+            <div class="col-10 offset-1">
+                <div id="accordion">
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Collapsible Group Item #1
+                                </button>
+                            </h5>
                         </div>
 
-                        <div class="tl-content">
-                            <h1>Lorem ipsum dolor sit</h1>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit.</p>
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                            <div class="card-body">
+                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                            </div>
                         </div>
-
                     </div>
-
-                </section>
-
+                    <div class="card">
+                        <div class="card-header" id="headingTwo">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Collapsible Group Item #2
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                            <div class="card-body">
+                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingThree">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    Collapsible Group Item #3
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                            <div class="card-body">
+                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-11 offset-1">
-                <section id="timeline">
-                    <div class="tl-item">
-                        <div class="tl-bg" style="background-image: url(https://placeimg.com/801/801/nature)"></div>
-                        <div class="tl-year">
-                            <p class="f2 heading--sanSerif">2011</p>
-                        </div>
 
-                        <div class="tl-content">
-                            <h1>Lorem ipsum dolor sit</h1>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit.</p>
-                        </div>
-
-                    </div>
-
-                    <div class="tl-item">
-
-                        <div class="tl-bg" style="background-image: url(https://placeimg.com/802/802/nature)"></div>
-
-                        <div class="tl-year">
-                            <p class="f2 heading--sanSerif">2013</p>
-                        </div>
-
-                        <div class="tl-content">
-                            <h1 class="f3 text--accent ttu">Vestibulum laoreet lorem</h1>
-                            <p>Suspendisse potenti. Sed sollicitudin eros lorem, eget accumsan risus dictum id. Maecenas dignissim ipsum vel mi rutrum egestas. Donec mauris nibh, facilisis ut hendrerit vel, fringilla sed felis. Morbi sed nisl et arcu.</p>
-                        </div>
-
-                    </div>
-
-                    <div class="tl-item">
-
-                        <div class="tl-bg" style="background-image: url(https://placeimg.com/803/803/nature)"></div>
-
-                        <div class="tl-year">
-                            <p class="f2 heading--sanSerif">2014</p>
-                        </div>
-
-                        <div class="tl-content">
-                            <h1 class="f3 text--accent ttu">Phasellus mauris elit</h1>
-                            <p>Mauris cursus magna at libero lobortis tempor. Suspendisse potenti. Aliquam interdum vulputate neque sit amet varius. Maecenas ac pulvinar nisi. Fusce vitae nunc ultrices, tristique dolor at, porttitor dolor. Etiam id cursus arcu, in dapibus nibh. Pellentesque non porta leo. Nulla eros odio, egestas quis efficitur vel, pretium sed.</p>
-                        </div>
-
-                    </div>
-
-                    <div class="tl-item">
-
-                        <div class="tl-bg" style="background-image: url(https://placeimg.com/800/800/nature)"></div>
-
-                        <div class="tl-year">
-                            <p class="f2 heading--sanSerif">2016</p>
-                        </div>
-
-                        <div class="tl-content">
-                            <h1 class="f3 text--accent ttu">Mauris vitae nunc elem</h1>
-                            <p>Suspendisse ac mi at dolor sodales faucibus. Nunc sagittis ornare purus non euismod. Donec vestibulum efficitur tortor, eget efficitur enim facilisis consequat. Vivamus laoreet laoreet elit. Ut ut varius metus, bibendum imperdiet ex. Curabitur diam quam, blandit at risus nec, pulvinar porttitor lorem. Pellentesque dolor elit.</p>
-                        </div>
-
-                    </div>
-                </section>
-
-            </div>
-            <div class="col-11 offset-1">
-                <section id="timeline">
-                    <div class="tl-item">
-                        <div class="tl-bg" style="background-image: url(https://placeimg.com/801/801/nature)"></div>
-                        <div class="tl-year">
-                            <p class="f2 heading--sanSerif">2011</p>
-                        </div>
-
-                        <div class="tl-content">
-                            <h1>Lorem ipsum dolor sit</h1>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit.</p>
-                        </div>
-
-                    </div>
-
-                    <div class="tl-item">
-
-                        <div class="tl-bg" style="background-image: url(https://placeimg.com/802/802/nature)"></div>
-
-                        <div class="tl-year">
-                            <p class="f2 heading--sanSerif">2013</p>
-                        </div>
-
-                        <div class="tl-content">
-                            <h1 class="f3 text--accent ttu">Vestibulum laoreet lorem</h1>
-                            <p>Suspendisse potenti. Sed sollicitudin eros lorem, eget accumsan risus dictum id. Maecenas dignissim ipsum vel mi rutrum egestas. Donec mauris nibh, facilisis ut hendrerit vel, fringilla sed felis. Morbi sed nisl et arcu.</p>
-                        </div>
-
-                    </div>
-
-                    <div class="tl-item">
-
-                        <div class="tl-bg" style="background-image: url(https://placeimg.com/803/803/nature)"></div>
-
-                        <div class="tl-year">
-                            <p class="f2 heading--sanSerif">2014</p>
-                        </div>
-
-                        <div class="tl-content">
-                            <h1 class="f3 text--accent ttu">Phasellus mauris elit</h1>
-                            <p>Mauris cursus magna at libero lobortis tempor. Suspendisse potenti. Aliquam interdum vulputate neque sit amet varius. Maecenas ac pulvinar nisi. Fusce vitae nunc ultrices, tristique dolor at, porttitor dolor. Etiam id cursus arcu, in dapibus nibh. Pellentesque non porta leo. Nulla eros odio, egestas quis efficitur vel, pretium sed.</p>
-                        </div>
-
-                    </div>
-
-                    <div class="tl-item">
-
-                        <div class="tl-bg" style="background-image: url(https://placeimg.com/800/800/nature)"></div>
-
-                        <div class="tl-year">
-                            <p class="f2 heading--sanSerif">2016</p>
-                        </div>
-
-                        <div class="tl-content">
-                            <h1 class="f3 text--accent ttu">Mauris vitae nunc elem</h1>
-                            <p>Suspendisse ac mi at dolor sodales faucibus. Nunc sagittis ornare purus non euismod. Donec vestibulum efficitur tortor, eget efficitur enim facilisis consequat. Vivamus laoreet laoreet elit. Ut ut varius metus, bibendum imperdiet ex. Curabitur diam quam, blandit at risus nec, pulvinar porttitor lorem. Pellentesque dolor elit.</p>
-                        </div>
-
-                    </div>
-                </section>
-
-            </div>
-            <div class="col-11 offset-1">
-                <section id="timeline">
-                    <div class="tl-item">
-                        <div class="tl-bg" style="background-image: url(https://placeimg.com/801/801/nature)"></div>
-                        <div class="tl-year">
-                            <p class="f2 heading--sanSerif">2011</p>
-                        </div>
-
-                        <div class="tl-content">
-                            <h1>Lorem ipsum dolor sit</h1>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit.</p>
-                        </div>
-
-                    </div>
-
-                    <div class="tl-item">
-
-                        <div class="tl-bg" style="background-image: url(https://placeimg.com/802/802/nature)"></div>
-
-                        <div class="tl-year">
-                            <p class="f2 heading--sanSerif">2013</p>
-                        </div>
-
-                        <div class="tl-content">
-                            <h1 class="f3 text--accent ttu">Vestibulum laoreet lorem</h1>
-                            <p>Suspendisse potenti. Sed sollicitudin eros lorem, eget accumsan risus dictum id. Maecenas dignissim ipsum vel mi rutrum egestas. Donec mauris nibh, facilisis ut hendrerit vel, fringilla sed felis. Morbi sed nisl et arcu.</p>
-                        </div>
-
-                    </div>
-
-                    <div class="tl-item">
-
-                        <div class="tl-bg" style="background-image: url(https://placeimg.com/803/803/nature)"></div>
-
-                        <div class="tl-year">
-                            <p class="f2 heading--sanSerif">2014</p>
-                        </div>
-
-                        <div class="tl-content">
-                            <h1 class="f3 text--accent ttu">Phasellus mauris elit</h1>
-                            <p>Mauris cursus magna at libero lobortis tempor. Suspendisse potenti. Aliquam interdum vulputate neque sit amet varius. Maecenas ac pulvinar nisi. Fusce vitae nunc ultrices, tristique dolor at, porttitor dolor. Etiam id cursus arcu, in dapibus nibh. Pellentesque non porta leo. Nulla eros odio, egestas quis efficitur vel, pretium sed.</p>
-                        </div>
-
-                    </div>
-
-                    <div class="tl-item">
-
-                        <div class="tl-bg" style="background-image: url(https://placeimg.com/800/800/nature)"></div>
-
-                        <div class="tl-year">
-                            <p class="f2 heading--sanSerif">2016</p>
-                        </div>
-
-                        <div class="tl-content">
-                            <h1 class="f3 text--accent ttu">Mauris vitae nunc elem</h1>
-                            <p>Suspendisse ac mi at dolor sodales faucibus. Nunc sagittis ornare purus non euismod. Donec vestibulum efficitur tortor, eget efficitur enim facilisis consequat. Vivamus laoreet laoreet elit. Ut ut varius metus, bibendum imperdiet ex. Curabitur diam quam, blandit at risus nec, pulvinar porttitor lorem. Pellentesque dolor elit.</p>
-                        </div>
-
-                    </div>
-                </section>
-
-            </div>
         </div>
     </div>
 @endsection

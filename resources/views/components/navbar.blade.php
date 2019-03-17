@@ -25,7 +25,7 @@
                 <a class="nav-link nav-link-text" href="{{route('registry_email')}}">Registro</a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link nav-link-text" href="#">Eventos</a>
+                <a class="nav-link nav-link-text" href="{{route('event_index')}}">Eventos</a>
             </li>
             <li class="nav-item ">
                 <a class="nav-link nav-link-text" href="{{route("ponente_index")}}">Ponentes</a>

@@ -6,7 +6,7 @@ $(document).ready(function () {
         datatype: "json",
         success: function (response, status, XHR) {
             if (response.success) {
-                console.log(response.data);
+                // console.log(response.data);
                 var x = response.data.length / 4;
                 for (var i = 0; i < x + 1; i++) {
                     if (response.data.length < 4) {

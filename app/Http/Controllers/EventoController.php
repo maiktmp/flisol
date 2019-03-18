@@ -15,7 +15,13 @@ class EventoController extends Controller
 {
     public function getAllEvents()
     {
-        $events = Evento::orderBy('hora_inicio', 'ASC')->get();
+        $events = Evento::orderBy('hora_inicio', 'ASC')
+            ->with([
+                "tienePonentes",
+                "tipoEvento",
+                "ubicacion",
+            ])
+            ->get();
         return response()->json($events);
     }
 

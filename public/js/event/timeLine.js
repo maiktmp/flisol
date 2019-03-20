@@ -50,9 +50,10 @@ $(document).ready(function () {
                             $event.nombre,
                             $event.hora_inicio,
                             $event.duracion,
+                            $event.cupo,
                             $event.requisitos,
                             $event.descripcion,
-                            $event.ponentes,
+                            $ponentes,
                             new tipoEvento($event.tipo_evento.id, $event.tipo_evento.nombre),
                         ));
                     });
@@ -111,16 +112,25 @@ $(document).ready(function () {
             id: "heading" + $event.id,
             class: "card-header"
         });
-        var $title = $("<div>", {class: "mb-0"});
+        var $title = $("<div>", {class: " row mb-0"});
+        var details = $("<div>", {
+            class: " col-10",
+            html: $event.nombre + " (" + $event.tipoEvento.nombre + ")",
+        });
+        var details2 = $("<div>", {
+            class: " col-2 text-center"
+        });
+
         var $btn = $("<div>", {
-            class: "btn btn-link collapsed ",
+            class: "btn btn-link collapsed p-0",
             "data-toggle": "collapse",
             "data-target": "#collapse" + $event.id,
             "aria-expanded": "false",
             "aria-controls": "collapse" + $event.id,
-            html: $event.nombre,
+            html: '<i class="fas fa-plus-circle "></i>'
         });
-        $title.append($btn);
+        details2.append($btn);
+        $title.append(details).append(details2);
         $cardHeader.append($title);
 
         var $collapse = $("<div>", {
@@ -129,9 +139,15 @@ $(document).ready(function () {
             "aria-labelledby": "heading" + $event.id,
             "data-parent": "#accordion"
         });
+        var $p = $('<p>', {
+            html: "<b>Ponente: </b>" + $event.ponentes[0].nombre + "<br>" +
+                "<b>Duración: </b>" + $event.duracion + "<br>" +
+                "<b>Cupo: </b>" + $event.cupo + " personas <br>" +
+                "<b>Descripción: </b>" + $event.descripcion
+        });
         var $cardBody = $("<div>", {
             class: "card-body",
-            html: "ASDASDASDSADASDASD"
+            html: $p
         });
         $collapse.append($cardBody);
         $card.append($cardHeader).append($collapse);
@@ -157,6 +173,7 @@ $(document).ready(function () {
         nombre,
         hora_inicio,
         duracion,
+        cupo,
         requisitos,
         descripcion,
         ponentes,
@@ -166,6 +183,7 @@ $(document).ready(function () {
         this.nombre = nombre;
         this.hora_inicio = moment(hora_inicio);
         this.duracion = duracion;
+        this.cupo = cupo;
         this.requisitos = requisitos;
         this.descripcion = descripcion;
         this.ponentes = ponentes;

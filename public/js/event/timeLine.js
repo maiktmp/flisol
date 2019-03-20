@@ -69,12 +69,17 @@ $(document).ready(function () {
     $(document).on('click', '#item-hour', function () {
         $this = $(this);
         var $hour = $this.attr("data-date");
+        firstHour.removeClass('active');
+        $this.addClass('active');
+        firstHour = $this;
         eventsFilter = events.filter($event => $event.hora_inicio.format("LT") === $hour);
         fillEventsByHour();
     });
 
     function fillEventsByHour() {
+        $acordion.hide("slow");
         $acordion.empty();
+        $acordion.show("slow");
         eventsFilter.forEach(function ($event) {
             $acordion.append(createCard($event));
         });

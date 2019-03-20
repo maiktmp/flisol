@@ -1,15 +1,23 @@
 #time-line-nav {
-    /*position: fixed;*/
-    background-color: transparent;
-
+    position: fixed;
+    background-color: #1a252f;
 }
-#item-hour{
+
+#div-hours {
+    position: relative
+}
+
+#item-hour {
     color: white !important;
 }
 
-#item-hour:hover{
+#item-hour:hover {
+    color: #f5892a !important;
+    /*font-size: 1.5em;*/
+}
+
+#item-hour.active {
     color: #91be20 !important;
-    font-size: 1.5em;
 }
 
 #timeline {

@@ -18,6 +18,7 @@ $(document).ready(function () {
                 } else {
                     var diff = $event.hora_inicio.diff(auxLastHour);
                     hour = diff === 0 ? null : hour;
+                    auxLastHour = $event.hora_inicio;
                 }
                 $listHours.append(createLiHour(hour));
             });

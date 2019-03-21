@@ -7,5 +7,5 @@
 
 <script src="{{ asset('/js/jquery.js') }}"></script>
 <script src="{{ asset('/js/boostrap.js') }}"></script>
-<script src="{{ asset('/js/global/carouselSponsors.js?V=1') }}"></script>
+<script src="{{ asset('/js/global/carouselSponsors.js?V=2') }}"></script>
 {{--<script src="{{ asset('js/global/inputAnimation.js') }}"></script>--}}

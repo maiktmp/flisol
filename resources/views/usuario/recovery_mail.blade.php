@@ -18,6 +18,12 @@
                                 {{$errors->first('sendMail')}}
                             </div>
                         @endif
+
+                        @if($errors->has('warning'))
+                            <div class="alert alert-warning">
+                                {{$errors->first('warning')}}
+                            </div>
+                        @endif
                         <form method="POST" class="box">
                             <div class="row">
                                 <div class="col-12">

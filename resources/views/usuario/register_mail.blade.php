@@ -20,7 +20,7 @@
                         @endif
                         <form method="POST" class="box">
                             <div class="row">
-                                <div class="col-12 text-center">
+                                <div class="col-12">
                                     <h5>Ingresa tu correo para continuar con el registro</h5>
                                 </div>
                                 @csrf

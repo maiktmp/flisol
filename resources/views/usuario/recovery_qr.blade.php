@@ -20,7 +20,7 @@
                         @endif
                         <form method="POST" class="box">
                             <div class="row">
-                                <div class="col-12 text-center">
+                                <div class="col-12">
                                     <h5>Por favor ingresa el correo con el cual te registraste.</h5>
                                 </div>
                                 @csrf
@@ -33,7 +33,7 @@
                                 </div>
                                 <div class="col-12 text-center">
                                     <button type="submit"
-                                            class="btn btn-primary btn-spin">RECUPERAR QR
+                                            class="btn btn-primary btn-spin">REENVIAR
                                     </button>
                                 </div>
                             </div>

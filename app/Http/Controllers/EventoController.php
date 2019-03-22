@@ -62,7 +62,9 @@ class EventoController extends Controller
             return back()
                 ->withErrors(["general" => "Lo sentimos el preregistro para este taller ha terminado, si aún deseas entrar asiste el día del evento para inscribirte al taller"]);
         }
-        $event->inscritos = $event->inscritos++;
+        $inscritos = $event->inscritos;
+        $inscritos++;
+        $event->inscritos = $inscritos;
         $event->tieneUsuarios()->attach($user->id);
         if ($event->save()) {
             return back()

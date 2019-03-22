@@ -21,7 +21,7 @@
                         <form method="POST" class="box">
                             <div class="row">
                                 <div class="col-12 text-center">
-                                    <h5>Ingresa tu correo para continuar con el registro</h5>
+                                    <h5>Por favor ingresa el correo con el cual te registraste.</h5>
                                 </div>
                                 @csrf
                                 <div class="col-12">
@@ -31,12 +31,9 @@
                                             'value'=>old('email')
                                         ])
                                 </div>
-                                <div class="col-12 text-right">
-                                    <a href="{{route('recovery_email')}}">¿No llego el correo de registro?</a>
-                                </div>
-                                <div class="col-12 text-center my-2 ">
+                                <div class="col-12 text-center">
                                     <button type="submit"
-                                            class="btn btn-primary btn-spin">REGISTRARME
+                                            class="btn btn-primary btn-spin">RECUPERAR CORREO
                                     </button>
                                 </div>
                             </div>

@@ -68,6 +68,78 @@ class UsuarioController extends Controller
         ]);
     }
 
+    public function recoveryMail(Request $request)
+    {
+        $validator = Validator::make($request->all(),
+            ['email' => 'required|email|exists:usuario,correo'],
+            [
+                'email.required' => 'Tu email es requerido.',
+                'email.email' => 'Tu email no es válido.',
+                'email.exists' => 'Tu email aún no ha sido registrado.',
+            ]
+        );
+        $validator->validate();
+        $email = request('email');
+        $user = Usuario::whereCorreo($email)->first();
+
+        try {
+        } catch (\Throwable $e) {
+            return back()
+                ->withErrors(['general' => 'Ocurrio un error en el registro ' . " " . $e->getMessage()])
+                ->withInput();
+        }
+        Mail::send('usuario._confirmation_registration', ["user" => $user], function ($message) use ($user) {
+            $message->from('flisol@cisctoluca.com', 'FLISoL');
+            $message->subject('Confirmación de correo.');
+            $message->to($user->correo);
+        });
+        return back()->withErrors([
+            "sendMail" => "Se ha enviado un correo a " . $user->correo . " por favor completa tu registro."
+        ]);
+    }
+
+    public function recoveryQR(Request $request)
+    {
+        $validator = Validator::make($request->all(),
+            ['email' => 'required|email|exists:usuario,correo'],
+            [
+                'email.required' => 'Tu email es requerido.',
+                'email.email' => 'Tu email no es válido.',
+                'email.exists' => 'Tu email aún no ha sido registrado.',
+            ]
+        );
+        $validator->validate();
+        $email = request('email');
+        $user = Usuario::whereCorreo($email)->first();
+        if ($user->QR_url === null) {
+            Mail::send('usuario._confirmation_registration', ["user" => $user], function ($message) use ($user) {
+                $message->from('flisol@cisctoluca.com', 'FLISoL');
+                $message->subject('Confirmación de correo.');
+                $message->to($user->correo);
+            });
+            return back()->withErrors([
+                "sendMail" => "Se ha enviado un correo a " . $user->correo . " por favor antes completa tu registro."
+            ]);
+        } else {
+            $code = $user->QR;
+            $pdf = \Storage::get("gafetes/" . $code . ".pdf");
+            Mail::send('usuario._email_gafete', [], function ($message) use ($pdf, $user, $code) {
+                $message->from('flisol@cisctoluca.com', 'FLISoL');
+                $message->subject('Gafete FLISoL.');
+                $message->to($user->correo);
+                $message->attachData($pdf, $code . ".pdf");
+            });
+            return back()->withErrors([
+                "sendMail" => "Se ha enviado el gafete a el correo de " . $user->correo . "."]);
+        }
+        try {
+        } catch (\Throwable $e) {
+            return back()
+                ->withErrors(['general' => 'Ocurrio un error al recuperar el correo ' . " " . $e->getMessage()])
+                ->withInput();
+        }
+    }
+
     public function fishRegistry(Request $request)
     {
         $userHash = $request->get('data', null);

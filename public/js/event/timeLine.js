@@ -57,6 +57,7 @@ $(document).ready(function () {
                             $event.descripcion,
                             $ponentes,
                             new tipoEvento($event.tipo_evento.id, $event.tipo_evento.nombre),
+                            new ubicacion($event.ubicacion.id, $event.ubicacion.edificio, $event.ubicacion.aula)
                         ));
                     });
                     callback();
@@ -167,6 +168,7 @@ $(document).ready(function () {
             html: "<b>Ponente: </b>" + $event.ponentes[0].nombre + "<br>" +
                 "<b>Duración: </b>" + $event.duracion + "<br>" +
                 "<b>Cupo: </b>" + $event.cupo + " personas <br>" +
+                "<b>Edificio/Aula: </b>" + $event.ubicacion.edificio + " / " + $event.ubicacion.aula + "<br>" +
                 "<b>Descripción: </b>" + $event.descripcion
         });
         var $cardBody = $("<div>", {
@@ -201,7 +203,8 @@ $(document).ready(function () {
         requisitos,
         descripcion,
         ponentes,
-        tipoEvento
+        tipoEvento,
+        ubicacion
     ) {
         this.id = id;
         this.nombre = nombre;
@@ -212,6 +215,7 @@ $(document).ready(function () {
         this.descripcion = descripcion;
         this.ponentes = ponentes;
         this.tipoEvento = tipoEvento;
+        this.ubicacion = ubicacion;
     }
 
     /**
@@ -244,6 +248,16 @@ $(document).ready(function () {
     ) {
         this.id = id;
         this.nombre = nombre;
+    }
+
+    function ubicacion(
+        id,
+        edificio,
+        aula,
+    ) {
+        this.id = id;
+        this.edificio = edificio;
+        this.aula = aula;
     }
 
 });

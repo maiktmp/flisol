@@ -34,7 +34,7 @@
                 <a class="nav-link nav-link-text" href="#">Contacto</a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link nav-link-text" href="#">Recuperar QR</a>
+                <a class="nav-link nav-link-text" href="{{route("recovery_QR")}}">Recuperar QR</a>
             </li>
 
         </ul>

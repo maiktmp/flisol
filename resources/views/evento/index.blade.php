@@ -8,7 +8,7 @@
 
 @push("scripts")
     <script type="text/javascript" src="{{asset('/js/moment.min.js?v=2')}}"></script>
-    <script type="text/javascript" src="{{asset('/js/event/timeLine.js?v=4')}}"></script>
+    <script type="text/javascript" src="{{asset('/js/event/timeLine.js?v=5')}}"></script>
 @endpush
 
 @section('content')

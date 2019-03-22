@@ -58,7 +58,10 @@ class EventoController extends Controller
                 ->withInput()
                 ->withErrors(["general" => "Ya te encuentras inscrito en el taller."]);
         }
-
+        if ($event->inscritos >= 17) {
+            return back()
+                ->withErrors(["general" => "Lo sentimos el preregistro para este taller ha terminado, si aún deseas entrar asiste el día del evento para inscribirte al taller"]);
+        }
         $event->inscritos = $event->inscritos++;
         $event->tieneUsuarios()->attach($user->id);
         if ($event->update()) {

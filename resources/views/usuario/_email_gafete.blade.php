@@ -4,11 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">
-    <link rel="stylesheet"
-          href="https://use.fontawesome.com/releases/v5.4.2/css/all.css"
-          integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns"
-          crossorigin="anonymous"
-    />
     <link rel="stylesheet" href="{{ asset('/css/flisol.css') }}">
 </head>
 <body>
@@ -36,9 +31,7 @@
         </div>
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
+<script src="{{ asset('/js/jquery.js') }}"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.min.js"
         integrity="sha384-pjaaA8dDz/5BgdFUPX6M/9SUZv4d12SUPF0axWc+VRZkx5xU3daN+lYb49+Ax+Tl"
         crossorigin="anonymous"></script>

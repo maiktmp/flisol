@@ -126,7 +126,7 @@
     <div class="row">
         <div class="col-12 text-center">
             <button type="submit"
-                    class="btn btn-primary">FINALIZAR REGISTRO
+                    class="btn btn-primary btn-spin">FINALIZAR REGISTRO
             </button>
         </div>
     </div>

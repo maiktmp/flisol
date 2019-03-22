@@ -27,6 +27,14 @@ Route::post('/user/registry/email',
     'UsuarioController@registerUserEmailPost')
     ->name('registry_email_post');
 
+Route::view('/user/recovery/email',
+    'usuario.recovery_mail')
+    ->name('recovery_email');
+
+Route::post('/user/recovery/email',
+    'UsuarioController@recoveryMail')
+    ->name('recovery_email_post');
+
 
 Route::get('/user/finish_registry',
     'UsuarioController@fishRegistry')
@@ -57,6 +65,15 @@ Route::get(
     '/user/registry/city/{cityId}/get_institutes',
     'UsuarioController@getInstitucionByMunicipio'
 )->name('user_get_institutes_by_state');
+
+
+Route::view('/user/recovery_qr',
+    'usuario.recovery_qr')
+    ->name('recovery_QR');
+
+Route::post('/user/recovery_qr',
+    'UsuarioController@recoveryQR')
+    ->name('recovery_QR_post');
 
 /**
  *=======================================

@@ -51,8 +51,12 @@ class UsuarioController extends Controller
         $email = request('email');
         $user = new Usuario();
         $user->correo = $email;
-        $user->hash = bcrypt($user->correo);
         $user->save();
+        return back()->withErrors([
+            "warning" => "Gracias por tu interes en el evento por el momento estamos renovando el
+             sitio, tu correo ha sido registrado satisfactoriamente, proximamente se te notificará a
+              tu correo para concluir el registro."
+        ]);
         try {
         } catch (\Throwable $e) {
             return back()
@@ -146,8 +150,15 @@ class UsuarioController extends Controller
     public function fishRegistry(Request $request)
     {
         $userHash = $request->get('data', null);
-        $userFind = Usuario::whereHash($userHash)->first();
-        return view('usuario.create', ["user" => $userFind]);
+        $userFind = null;
+        $users = Usuario::whereNull("QR_url")->get();
+        $filter = $users->filter(function ($user) use ($userHash) {
+            if (Hash::check($user->correo, $userHash)) {
+                return true;
+            }
+        });
+
+        return view('usuario.create', ["user" => $filter->first()]);
     }
 
     public function fishRegistryPost(Request $request)

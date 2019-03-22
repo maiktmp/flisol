@@ -9,12 +9,12 @@
                 <div class="card">
                     <div class="card-body">
                         @if($errors->has('general'))
-                            <div class="alert alert-danger">
+                            <div class="alert alert-danger text-center">
                                 {{$errors->first('general')}}
                             </div>
                         @endif
                         @if($errors->has('sendMail'))
-                            <div class="alert alert-success">
+                            <div class="alert alert-success text-center">
                                 {{$errors->first('sendMail')}}
                             </div>
                         @endif
@@ -33,7 +33,7 @@
                                 </div>
                                 <div class="col-12 text-center">
                                     <button type="submit"
-                                            class="btn btn-primary btn-spin">RECUPERAR CORREO
+                                            class="btn btn-primary btn-spin">RECUPERAR QR
                                     </button>
                                 </div>
                             </div>

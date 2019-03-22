@@ -51,8 +51,12 @@ class EventoController extends Controller
                 ->withInput()
                 ->withErrors(["general" => "El email que ingresaste no se encuentra registrado, por favor realiza el registro previo"]);
         }
+        if ($user->QR_url === null) {
+            return back()
+                ->withInput()
+                ->withErrors(["general" => "Lo sentimos aun no has concluido tu registro por correo."]);
+        }
         $exist = $event->tieneUsuarios()->where("fk_id_usuario", $user->id)->exists();
-
         if ($exist) {
             return back()
                 ->withInput()

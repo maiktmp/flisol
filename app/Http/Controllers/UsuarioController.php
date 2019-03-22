@@ -51,6 +51,7 @@ class UsuarioController extends Controller
         $email = request('email');
         $user = new Usuario();
         $user->correo = $email;
+        $user->hash = bcrypt($user->correo);
         $user->save();
         try {
         } catch (\Throwable $e) {
@@ -145,13 +146,7 @@ class UsuarioController extends Controller
     public function fishRegistry(Request $request)
     {
         $userHash = $request->get('data', null);
-        $userFind = null;
-        foreach (Usuario::all() as $user) {
-            if (Hash::check($user->correo, $userHash)) {
-                $userFind = $user;
-                break;
-            }
-        }
+        $userFind = Usuario::whereHash($userHash)->first();
         return view('usuario.create', ["user" => $userFind]);
     }
 

@@ -50,6 +50,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read mixed $full_name
  * @property string|null $fechaNac
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Usuario whereFechaNac($value)
+ * @property string|null $hash
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Usuario whereHash($value)
  */
 class Usuario extends Model
 {

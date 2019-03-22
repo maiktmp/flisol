@@ -86,7 +86,11 @@ class UsuarioController extends Controller
         $validator->validate();
         $email = request('email');
         $user = Usuario::whereCorreo($email)->first();
-
+        return back()->withErrors([
+            "warning" => "Gracias por tu interes en el evento por el momento estamos renovando el
+             sitio, tu correo ha sido registrado satisfactoriamente, proximamente se te notificará a
+              tu correo para concluir el registro."
+        ]);
         try {
         } catch (\Throwable $e) {
             return back()

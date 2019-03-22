@@ -25,6 +25,7 @@ function clickButtonProfile(id) {
                 $("#inp-ponente-contacto").val(response.data.correo);
                 $("#modal-profile").modal("show");
                 var $tbodyEvents = $("#tbody-events");
+                $tbodyEvents.empty();
                 var eventos = response.data.tiene_eventos;
                 eventos.forEach(function (evento) {
                     var $trEvents = $("<tr>");

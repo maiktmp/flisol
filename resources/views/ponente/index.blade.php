@@ -9,13 +9,13 @@
 
 @push("scripts")
     <script type="text/javascript" src="{{asset('js/moment.min.js?V=2')}}"></script>
-    <script type="text/javascript" src="{{asset('/js/ponente/funcProfiles.js?V=2')}}"></script>
+    <script type="text/javascript" src="{{asset('/js/ponente/funcProfiles.js?V=3')}}"></script>
 @endpush
 
 @section('content')
     <div class="container">
         <div class="card bg-light" style="padding: 15px 15px;">
-            <div class="row">
+            <div class="row text-center">
                 @forelse($ponentes as $ponente)
                     @include("ponente._card",[
                         "name" => $ponente->nombre,

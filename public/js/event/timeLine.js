@@ -2,6 +2,7 @@ $(document).ready(function () {
     var events = [];
     var eventsFilter = [];
     var active = true;
+    var urlWorkShop = $("#inp-url-login-workshop").val();
     var firstHour;
     var $listHours = $("#time-line-nav");
     var $acordion = $("#accordion");
@@ -118,13 +119,30 @@ $(document).ready(function () {
             id: "heading" + $event.id,
             class: "card-header"
         });
+        var $btn = null;
+        var $isWorkShop = null;
+        if ($event.tipoEvento.id === 1) {
+            $btn = $('<a>', {
+                role: "button",
+                href: urlWorkShop.replace("FAKE_ID", $event.id),
+                class: "btn btn-success",
+                html: "Inscribirme"
+            });
+            $isWorkShop = "padding: 20px 0";
+        }
         var $title = $("<div>", {class: " row mb-0"});
+
+        var $col12Title = $("<div>", {class: " col-12 ", html: $event.nombre + " (" + $event.tipoEvento.nombre + ") "});
+        var $col12Button = $("<div>", {class: " col-12 "}).append($btn);
+        var $rowTitle = $("<div>", {class: " row"}).append($col12Title).append($col12Button);
+
         var details = $("<div>", {
-            class: " col-10",
-            html: $event.nombre + " (" + $event.tipoEvento.nombre + ")",
-        });
+            class: " col-10"
+        }).append($rowTitle);
+
         var details2 = $("<div>", {
-            class: " col-2 text-center"
+            class: " col-2 text-center",
+            style: $isWorkShop
         });
 
         var $btn = $("<div>", {
@@ -133,7 +151,7 @@ $(document).ready(function () {
             "data-target": "#collapse" + $event.id,
             "aria-expanded": "false",
             "aria-controls": "collapse" + $event.id,
-            html: '<i class="fas fa-plus-circle "></i>'
+            html: '<i class="fas fa-plus-circle color-green-dark"></i>'
         });
         details2.append($btn);
         $title.append(details).append(details2);

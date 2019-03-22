@@ -90,6 +90,16 @@ class Evento extends Model
         );
     }
 
+    public function tieneUsuarios()
+    {
+        return $this->belongsToMany(
+            Usuario::class,
+            'evento_tiene_usuario',
+            'fk_id_evento',
+            'fk_id_usuario'
+        );
+    }
+
     public function ubicacion()
     {
         return $this->belongsTo(

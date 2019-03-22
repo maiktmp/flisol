@@ -13,7 +13,7 @@ class CreateFlisolSchema extends Migration
      */
     public function up()
     {
-        $this->down();
+//        $this->down();
 
         Schema::create('estado', function (Blueprint $table) {
             $table->increments('id');

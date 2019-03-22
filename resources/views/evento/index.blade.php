@@ -21,9 +21,10 @@
             </div>
             <div class="col-10 col-md-9 mt-5 mb-3">
                 <div id="accordion">
+                    <input id="inp-url-login-workshop" type="hidden"
+                           value="{{route('login_event',["eventId"=>'FAKE_ID'])}}">
                 </div>
             </div>
-
         </div>
     </div>
 @endsection

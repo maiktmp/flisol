@@ -89,7 +89,17 @@ Carousel
 .bg-black {
     background-color: #131313;
 }
-
+.color-green-light{
+    color: #94c11f;
+}
+.color-green-dark{
+    color: #0c8c36;
+}
+.btn-flisol{
+    color: #fff;
+    background-color: #94c11f;
+    border-color: #94c11f;
+}
 /*
 ==================================
             Alejandro

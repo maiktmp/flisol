@@ -98,7 +98,17 @@ Route::view(
 )->name("event_index");
 
 Route::get(
-    'evetnto/get_all',
+    'evento/get_all',
     'EventoController@getAllEvents'
 )->name('get_all_events');
+
+Route::get(
+    'evento/{eventId}/login',
+    'EventoController@logInWorkShop'
+)->name('login_event');
+
+Route::post(
+    'evento/{eventId}/login',
+    'EventoController@logInWorkShopPost'
+)->name('login_event_post');
 

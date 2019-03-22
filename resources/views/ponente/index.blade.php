@@ -4,11 +4,12 @@
 @extends('templates.main')
 
 @push("css")
-    <link rel="stylesheet" type="text/css" href="{{asset('/css/profiles-css.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('/css/profiles-css.css?V=2')}}">
 @endpush
 
 @push("scripts")
-    <script type="text/javascript" src="{{asset('/js/ponente/funcProfiles.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/moment.min.js?V=2')}}"></script>
+    <script type="text/javascript" src="{{asset('/js/ponente/funcProfiles.js?V=2')}}"></script>
 @endpush
 
 @section('content')
@@ -130,14 +131,8 @@
                                         <th width="20%">Edificio-Aula</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                    <tbody id="tbody-events">
 
-                                    </tr>
                                     </tbody>
                                 </table>
                             </div>

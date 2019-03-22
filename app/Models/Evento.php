@@ -38,6 +38,10 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Evento whereInscritos($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Evento whereNombre($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Evento whereRequisitos($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Ponente[] $tienePonentes
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Usuario[] $tieneUsuarios
+ * @property-read \App\Models\TipoEvento $tipoEvento
+ * @property-read \App\Models\Ubicacion $ubicacion
  */
 class Evento extends Model
 {

@@ -36,6 +36,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Patrocinador whereRSocial($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Patrocinador whereTelefono($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Patrocinador whereUrl($value)
+ * @property-read mixed $absolute_image_url
  */
 class Patrocinador extends Model
 {

@@ -24,6 +24,21 @@ function clickButtonProfile(id) {
                 $("#ponente-desc").html(response.data.descripcion);
                 $("#inp-ponente-contacto").val(response.data.correo);
                 $("#modal-profile").modal("show");
+                var $tbodyEvents = $("#tbody-events");
+                var eventos = response.data.tiene_eventos;
+                eventos.forEach(function (evento) {
+                    var $trEvents = $("<tr>");
+                    $trEvents.append($("<td>", {class: "text-center", html: evento.tipo_evento.nombre}));
+                    $trEvents.append($("<td>", {class: "text-center", html: evento.nombre}));
+                    var $hora = moment(evento.nombre.hora_inicio);
+                    $trEvents.append($("<td>", {class: "text-center", html: $hora.format("LT")}));
+                    $trEvents.append($("<td>", {
+                        class: "text-center",
+                        html: evento.ubicacion.edificio + "-" + evento.ubicacion.aula
+                    }));
+                    $tbodyEvents.append($trEvents);
+                });
+
                 $('.modal').on('shown.bs.modal', function () {
                     //Make sure the modal and backdrop are siblings (changes the DOM)
                     $(this).before($('.modal-backdrop'));

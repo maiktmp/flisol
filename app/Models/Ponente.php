@@ -40,6 +40,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $fk_id_patrocinador
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Ponente whereFkIdPatrocinador($value)
  * @property-read \App\Models\Patrocinador|null $patrocinador
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Evento[] $tieneEventos
  */
 class Ponente extends Model
 {
@@ -89,6 +90,16 @@ class Ponente extends Model
             Patrocinador::class,
             'fk_id_patrocinador',
             'id'
+        );
+    }
+
+    public function tieneEventos()
+    {
+        return $this->belongsToMany(
+            Evento::class,
+            'evento_tiene_ponente',
+            'fk_id_ponente',
+            'fk_id_evento'
         );
     }
 

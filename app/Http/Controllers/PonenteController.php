@@ -22,7 +22,12 @@ class PonenteController extends Controller
 
     public function viewPonente($ponenteId)
     {
-        $ponente = Ponente::find($ponenteId);
+        $ponente = Ponente::with([
+            'patrocinador',
+            'tieneEventos',
+            'tieneEventos.ubicacion',
+            'tieneEventos.tipoEvento',
+        ])->find($ponenteId);
         $gr = new GenericResponse();
         if ($ponente === null) {
             $gr->message = "No se encontró el ponente";

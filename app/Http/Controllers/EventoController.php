@@ -64,7 +64,7 @@ class EventoController extends Controller
         }
         $event->inscritos = $event->inscritos++;
         $event->tieneUsuarios()->attach($user->id);
-        if ($event->update()) {
+        if ($event->save()) {
             return back()
                 ->withErrors(["success" => "!Listo, ya te encuentras inscrito al taller!"]);
         } else {

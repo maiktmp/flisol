@@ -122,12 +122,14 @@ class UsuarioController extends Controller
             ]);
         } else {
             $code = $user->QR;
-            $pdf = \Storage::get("gafetes/" . $code . ".pdf");
-            Mail::send('usuario._email_gafete', [], function ($message) use ($pdf, $user, $code) {
+            $pdf = App::make('dompdf.wrapper');
+            $pdf->loadView('usuario._gafete_view', ["usuario" => $user]);
+            $render = $pdf->output();
+            Mail::send('usuario._email_gafete', [], function ($message) use ($render, $user, $code) {
                 $message->from('flisol@cisctoluca.com', 'FLISoL');
                 $message->subject('Gafete FLISoL.');
                 $message->to($user->correo);
-                $message->attachData($pdf, $code . ".pdf");
+                $message->attachData($render, $code . ".pdf");
             });
             return back()->withErrors([
                 "sendMail" => "Se ha enviado el gafete a el correo de " . $user->correo . "."]);

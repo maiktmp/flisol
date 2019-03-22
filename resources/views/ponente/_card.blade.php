@@ -1,4 +1,4 @@
-<div class="col-3 mx-2">
+<div class="col-4 mx-2">
     <div class="box">
         <div class="card bg-dark text-white text-left card-shadow" style="width:250px">
             <img class="card-img-top img-card-center" src="{{asset ($img_url)}}" alt="Responsive">

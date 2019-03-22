@@ -9,12 +9,12 @@
                 <div class="card">
                     <div class="card-body">
                         @if($errors->has('general'))
-                            <div class="alert alert-danger">
+                            <div class="alert alert-danger text-center">
                                 {{$errors->first('general')}}
                             </div>
                         @endif
                         @if($errors->has('success'))
-                            <div class="alert alert-success">
+                            <div class="alert alert-success text-center">
                                 {{$errors->first('success')}}
                             </div>
                         @endif

@@ -9,7 +9,7 @@
 
 @push("scripts")
     <script type="text/javascript" src="{{asset('js/moment.min.js?V=2')}}"></script>
-    <script type="text/javascript" src="{{asset('/js/ponente/funcProfiles.js?V=3')}}"></script>
+    <script type="text/javascript" src="{{asset('/js/ponente/funcProfiles.js?V=4')}}"></script>
 @endpush
 
 @section('content')

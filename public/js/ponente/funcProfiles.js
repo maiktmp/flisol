@@ -31,7 +31,7 @@ function clickButtonProfile(id) {
                     var $trEvents = $("<tr>");
                     $trEvents.append($("<td>", {class: "text-center", html: evento.tipo_evento.nombre}));
                     $trEvents.append($("<td>", {class: "text-center", html: evento.nombre}));
-                    var $hora = moment(evento.nombre.hora_inicio);
+                    var $hora = moment(evento.hora_inicio);
                     $trEvents.append($("<td>", {class: "text-center", html: $hora.format("LT")}));
                     $trEvents.append($("<td>", {
                         class: "text-center",

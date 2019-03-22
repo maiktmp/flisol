@@ -3,7 +3,7 @@
 @extends('templates.main')
 
 @push("css")
-    <link rel="stylesheet" type="text/css" href="{{asset('css/timeLine.css?v=1')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/timeLine.css?v=2')}}">
 @endpush
 
 @push("scripts")

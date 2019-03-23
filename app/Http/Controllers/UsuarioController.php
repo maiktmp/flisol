@@ -54,11 +54,11 @@ class UsuarioController extends Controller
         $user->correo = $email;
         $user->hash = bcrypt($email);
         $user->save();
-        return back()->withErrors([
-            "warning" => "Gracias por tu interes en el evento por el momento estamos renovando el
-             sitio, tu correo ha sido registrado satisfactoriamente, proximamente se te notificará a
-              tu correo para concluir el registro."
-        ]);
+//        return back()->withErrors([
+//            "warning" => "Gracias por tu interes en el evento por el momento estamos renovando el
+//             sitio, tu correo ha sido registrado satisfactoriamente, proximamente se te notificará a
+//              tu correo para concluir el registro."
+//        ]);
         try {
         } catch (\Throwable $e) {
             return back()
@@ -92,11 +92,11 @@ class UsuarioController extends Controller
             $user->hash = bcrypt($email);
             $user->save();
         }
-        return back()->withErrors([
-            "warning" => "Gracias por tu interes en el evento por el momento estamos renovando el
-             sitio, tu correo ha sido registrado satisfactoriamente, proximamente se te notificará a
-              tu correo para concluir el registro."
-        ]);
+//        return back()->withErrors([
+//            "warning" => "Gracias por tu interes en el evento por el momento estamos renovando el
+//             sitio, tu correo ha sido registrado satisfactoriamente, proximamente se te notificará a
+//              tu correo para concluir el registro."
+//        ]);
         try {
         } catch (\Throwable $e) {
             return back()
@@ -332,17 +332,19 @@ class UsuarioController extends Controller
         foreach ($users as $user) {
             $hash = bcrypt($user->correo);
             $user->hash = $hash;
-            $user->save();
             try {
                 Mail::send('usuario._confirmation_registration', ["user" => $user], function ($message) use ($user) {
                     $message->from('flisol@cisctoluca.com', 'FLISoL');
+                    $message->Bcc('ciscittol@gmail.com', 'CISC');
                     $message->subject('Correo de registro para el FLISoL.');
                     $message->to($user->correo);
                 });
+                $user->save();
             } catch (\Exception $e) {
+                return dd($e);
                 $exceptions[] = [$user => $e];
             }
-            return dd($exceptions);
         }
+        return dd($exceptions);
     }
 }

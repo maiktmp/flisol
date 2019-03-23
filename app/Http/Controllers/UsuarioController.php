@@ -15,6 +15,7 @@ use App\Models\Municipio;
 use App\Models\Usuario;
 use DB;
 use Hash;
+use http\Client\Curl\User;
 use Illuminate\Http\Request;
 use Mail;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -51,6 +52,7 @@ class UsuarioController extends Controller
         $email = request('email');
         $user = new Usuario();
         $user->correo = $email;
+        $user->hash = bcrypt($email);
         $user->save();
         return back()->withErrors([
             "warning" => "Gracias por tu interes en el evento por el momento estamos renovando el
@@ -86,6 +88,10 @@ class UsuarioController extends Controller
         $validator->validate();
         $email = request('email');
         $user = Usuario::whereCorreo($email)->first();
+        if ($user->hash === null) {
+            $user->hash = bcrypt($email);
+            $user->save();
+        }
         return back()->withErrors([
             "warning" => "Gracias por tu interes en el evento por el momento estamos renovando el
              sitio, tu correo ha sido registrado satisfactoriamente, proximamente se te notificará a
@@ -154,15 +160,16 @@ class UsuarioController extends Controller
     public function fishRegistry(Request $request)
     {
         $userHash = $request->get('data', null);
-        $userFind = null;
-        $users = Usuario::whereNull("QR_url")->get();
-        $filter = $users->filter(function ($user) use ($userHash) {
-            if (Hash::check($user->correo, $userHash)) {
-                return true;
-            }
-        });
-
-        return view('usuario.create', ["user" => $filter->first()]);
+//        $userFind = null;
+//        $users = Usuario::whereNull("QR_url")->get();
+//        $filter = $users->filter(function ($user) use ($userHash) {
+//            if (Hash::check($user->correo, $userHash)) {
+//                return true;
+//            }
+//        });
+        //$filter->first()
+        $user = Usuario::whereHash($userHash)->first();
+        return view('usuario.create', ["user" => $user]);
     }
 
     public function fishRegistryPost(Request $request)
@@ -313,5 +320,29 @@ class UsuarioController extends Controller
 //        return $pdf->stream("gafeteFlisol.pdf");
 //        return $pdf->download("gafeteFlisol.pdf");
         return \Storage::download("/gafetes/" . $user->QR . ".pdf");
+    }
+
+    public function configUsers()
+    {
+        $users = Usuario::whereNull("QR_url")
+            ->whereNull("hash")
+            ->get();
+        $exceptions = [];
+//        return dd($users->count());
+        foreach ($users as $user) {
+            $hash = bcrypt($user->correo);
+            $user->hash = $hash;
+            $user->save();
+            try {
+                Mail::send('usuario._confirmation_registration', ["user" => $user], function ($message) use ($user) {
+                    $message->from('flisol@cisctoluca.com', 'FLISoL');
+                    $message->subject('Correo de registro para el FLISoL.');
+                    $message->to($user->correo);
+                });
+            } catch (\Exception $e) {
+                $exceptions[] = [$user => $e];
+            }
+            return dd($exceptions);
+        }
     }
 }

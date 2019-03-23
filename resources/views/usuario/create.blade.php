@@ -14,6 +14,10 @@
                                     <p style="font-size: 1.8em">
                                         Liga de registro no válida
                                     </p>
+                                @elseif($user->QR_url!==null)
+                                    <p style="font-size: 1.8em">
+                                        Gracias por concluír tu registro
+                                    </p>
                                 @else
                                     @include('usuario._form',["user"=>$user])
                                 @endif

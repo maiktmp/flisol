@@ -75,6 +75,10 @@ Route::post('/user/recovery_qr',
     'UsuarioController@recoveryQR')
     ->name('recovery_QR_post');
 
+Route::get('/user/config/email',
+    'UsuarioController@configUsers')
+    ->name('recovery_QR_post');
+
 /**
  *=======================================
  *          Ponentes Routes

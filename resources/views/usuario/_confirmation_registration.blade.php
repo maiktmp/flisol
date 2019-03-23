@@ -30,7 +30,7 @@
                             <a
                                 role="button"
 g                                class="btn btn-success"
-                                href="{{route('finish_registry',['data'=>bcrypt($user->correo)])}}"
+                                href="{{route('finish_registry',['data'=>($user->hash)])}}"
                                 style="color: white">Continuar registro</a>
                         </div>
                     </div>

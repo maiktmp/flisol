@@ -9,7 +9,7 @@ $(document).ready(function () {
                 // console.log(response.data);
                 var x = response.data.length / 4;
                 for (var i = 0; i < x + 1; i++) {
-                    if (response.data.length < 4) {
+                    if (response.data.length <= 4) {
                         createItem(response.data);
                     } else {
                         createItem(response.data.slice(0, 4));

@@ -79,6 +79,13 @@ Route::get('/user/config/email',
     'UsuarioController@configUsers')
     ->name('recovery_QR_post');
 
+Route::view("user/event/registry",
+    'usuario.second_form')
+    ->name("user_second_form");
+
+Route::post("user/event/registry",
+    'UsuarioController@secondFormPost')
+    ->name("user_second_form_post");
 /**
  *=======================================
  *          Ponentes Routes

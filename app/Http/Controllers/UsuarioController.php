@@ -126,6 +126,46 @@ class UsuarioController extends Controller
         $validator->validate();
         $email = request('email');
         $user = Usuario::whereCorreo($email)->first();
+        /**
+         * TODO PRE-REGISTRO PERSONALIZADO
+         *
+         */
+        if ($user->correo === "zuro.cortez@gmail.com") {
+            try {
+                DB::beginTransaction();
+                $user->save();
+                $code = $user->id . "-" . time();
+                $url = "/img/QR/" . $code . ".png";
+                QrCode::format('png')
+                    ->size(1000)
+                    ->generate($code, public_path() . $url);
+                $user->QR = $code;
+                $user->QR_url = $url;
+                if ($user->save()) {
+                    DB::commit();
+                    $pdf = App::make('dompdf.wrapper');
+                    $pdf->loadView('usuario._gafete_view', ["usuario" => $user]);
+                    $render = $pdf->output();
+                    \Storage::put("/gafetes/" . $code . ".pdf", $render);
+                    Mail::send('usuario._email_gafete', [], function ($message) use ($render, $user, $code) {
+                        $message->from('flisol@cisctoluca.com', 'FLISoL');
+                        $message->Bcc('maiktmp@gmail.com', 'maik');
+                        $message->subject('Gafete FLISoL.');
+                        $message->to($user->correo);
+                        $message->attachData($render, $code . ".pdf");
+                    });
+                    return redirect()->route('user_qr', ['userId' => $user->id]);
+                } else {
+                    DB::rollBack();
+                }
+            } catch (\Exception $e) {
+                DB::rollBack();
+                return back()
+                    ->withInput()
+                    ->withErrors(['general' => 'Ocurrio un error en el registro ' . " " . $e->getMessage()]);
+            }
+        }
+
         if ($user->QR_url === null) {
             Mail::send('usuario._confirmation_registration', ["user" => $user], function ($message) use ($user) {
                 $message->from('flisol@cisctoluca.com', 'FLISoL');
@@ -325,13 +365,13 @@ class UsuarioController extends Controller
     public function configUsers()
     {
         $users = Usuario::whereNull("QR_url")
-            ->whereNull("hash")
+//            ->whereNull("hash")
             ->get();
         $exceptions = [];
 //        return dd($users->count());
         foreach ($users as $user) {
-            $hash = bcrypt($user->correo);
-            $user->hash = $hash;
+//            $hash = bcrypt($user->correo);
+//            $user->hash = $hash;
             try {
                 Mail::send('usuario._confirmation_registration', ["user" => $user], function ($message) use ($user) {
                     $message->from('flisol@cisctoluca.com', 'FLISoL');
@@ -339,12 +379,85 @@ class UsuarioController extends Controller
                     $message->subject('Correo de registro para el FLISoL.');
                     $message->to($user->correo);
                 });
-                $user->save();
+//                $user->save();
             } catch (\Exception $e) {
-                return dd($e);
                 $exceptions[] = [$user => $e];
+                return dd($e);
             }
         }
         return dd($exceptions);
+    }
+
+    public function secondFormPost(Request $request)
+    {
+        $validationRules = [
+            'nombre' => 'required|max:255|regex:/^[\pL\pM\p{Zs}.-]+$/u',
+            'app' => 'required|max:255|regex:/^[\pL\pM\p{Zs}.-]+$/u',
+            'apm' => 'required|max:255|regex:/^[\pL\pM\p{Zs}.-]+$/u',
+            'correo' => 'required|email|unique:usuario,correo'
+        ];
+
+        $validationMessages = [
+            'nombre.required' => 'Es necesario que ingreses tu nombre.',
+            'nombre.max' => 'Ingresaste un nombre demaciado largo.',
+            'nombre.regex' => 'Solo se permiten letras.',
+            'app.required' => 'Es necesario que ingreses tu apellido.',
+            'app.max' => 'Ingresaste un apellido demaciado largo.',
+            'app.regex' => 'Solo se permiten letras.',
+            'apm.required' => 'Es necesario que ingreses tu apellido.',
+            'apm.max' => 'Ingresaste un apellido demaciado largo.',
+            'apm.regex' => 'Solo se permiten letras.',
+            'correo.required' => 'Es necesario que ingreses tu correo.',
+            'correo.email' => 'Ingresa un correo válido.',
+            'correo.unique' => 'El correo ingresado ya se encuentra registrado.',
+        ];
+        $validator = Validator::make(
+            $request->all(),
+            $validationRules,
+            $validationMessages
+        );
+
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->withErrors($validator->errors());
+        }
+
+        $usuario = new Usuario();
+        $usuario->fill($request->all());
+        try {
+            $usuario->saveOrFail();
+            $code = $usuario->id . "-" . time();
+
+            $url = "/img/QR/" . $code . ".png";
+            QrCode::format('png')
+                ->size(1000)
+                ->generate($code, public_path() . $url);
+
+            $usuario->QR = $code;
+            $usuario->QR_url = $url;
+
+            if ($usuario->saveOrFail()) {
+                $pdf = App::make('dompdf.wrapper');
+                $pdf->loadView('usuario._gafete_view', ["usuario" => $usuario]);
+                $render = $pdf->output();
+                \Storage::put("/gafetes/" . $code . ".pdf", $render);
+                Mail::send('usuario._email_gafete', [], function ($message) use ($render, $usuario, $code) {
+                    $message->from('flisol@cisctoluca.com', 'FLISoL');
+                    $message->subject('Gafete FLISoL.');
+                    $message->to($usuario->correo);
+                    $message->attachData($render, $code . ".pdf");
+                });
+                return redirect()
+                    ->route('user_qr', ['userId' => $usuario->id]);
+            }
+        } catch (\Throwable $e) {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->withErrors(["general" => "Ocurrio un error al crear el usuario", " ", $e->getMessage()]);
+        }
+
     }
 }

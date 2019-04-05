@@ -24,9 +24,9 @@ class CheckGroups extends Command
 
     public function handle()
     {
-//        $now = Carbon::now();
-        $now = Carbon::create(2019, 04, 05, 10, 55, 00);
-        $eventos = Evento::where('hora_inicio', $now->addMinute(5))->get();
+        $now = Carbon::now();
+//        $now = Carbon::create(2019, 04, 05, 10, 55, 00);
+        $eventos = Evento::where('hora_inicio', $now)->get();
         foreach ($eventos as $evento) {
             $usuarios = $evento->tieneUsuarios;
             foreach ($usuarios as $usuario) {

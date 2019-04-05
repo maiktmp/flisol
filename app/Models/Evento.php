@@ -101,7 +101,8 @@ class Evento extends Model
             'evento_tiene_usuario',
             'fk_id_evento',
             'fk_id_usuario'
-        )->withTimestamps();
+        )->withPivot(["asistencia"])
+            ->withTimestamps();
     }
 
     public function ubicacion()

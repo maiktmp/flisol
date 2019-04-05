@@ -12,6 +12,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Http\Request\CreateEventoRequest;
 use App\Models\Evento;
+use App\Models\Usuario;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
@@ -91,7 +92,6 @@ class EventoController extends Controller
         }
         return $hours . ":" . $minutes . ":" . $seconds;
     }
-
 }
 
 

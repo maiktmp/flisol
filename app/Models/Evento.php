@@ -122,4 +122,9 @@ class Evento extends Model
             'id'
         );
     }
+
+    public static function asMap()
+    {
+        return self::pluck("nombre", "id");
+    }
 }

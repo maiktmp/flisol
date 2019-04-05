@@ -32,6 +32,10 @@ class CheckGroups extends Command
             foreach ($usuarios as $usuario) {
                 if ($usuario->pivot->asistencia === 0) {
                     $evento->tieneUsuarios()->detach($usuario->id);
+                    $capacidad = $evento->inscritos;
+                    $capacidad = $capacidad - 1;
+                    $evento->inscritos = $capacidad;
+                    $evento->save();
                 };
             }
         }

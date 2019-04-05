@@ -3,13 +3,14 @@
 @extends('templates.main')
 
 @push("css")
-    <link rel="stylesheet" type="text/css" href="{{asset('/css/timerStyle.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('/css/timerStyle.css?v=1')}}">
 @endpush
 
 @push("scripts")
-    <script type="text/javascript" src="{{asset('/js/funcionamientoTimer.js?v=1')}}"></script>
-    <script type="text/javascript" src="{{asset('/js/moment.min.js?v=1')}}"></script>
+    <script type="text/javascript" src="{{asset('/js/funcionamientoTimer.js?v=2')}}"></script>
+    <script type="text/javascript" src="{{asset('/js/moment.min.js?v=2')}}"></script>
 @endpush
+
 
 
 @section('content')

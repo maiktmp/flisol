@@ -12,6 +12,7 @@ namespace App\Http\Controllers;
 use App\Models\Evento;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
+use Validator;
 
 class EventoController extends Controller
 {
@@ -79,4 +80,24 @@ class EventoController extends Controller
                 ->withErrors(["general" => "Ocurrio un error, por favor intenta más tarde."]);
         }
     }
+
+    public function previousRegistrationPost(Request $request)
+    {
+        $email = request('email');
+        $qr = $request->get('Qr');
+        $eventId = $request->get('fk_id_event');
+
+        $user = Usuario::whereCorreo($email)->first();
+        if ($user === null) {
+            $user = Usuario::where("QR", $qr)->first();
+        }
+
+        if ($user === null) {
+            return back()->withInput()->withErrors(["general" => "No se encuentra el usuario, verifica sus datos por favor"]);
+        };
+        $event = Evento::find($eventId);
+        $event->tieneUsuarios()->attach($user->id, ['asistencia' => true]);
+        return back()->withInput()->withErrors(["success" => "Usuario " . " " . $user->full_name . " registrado."]);
+    }
+
 }

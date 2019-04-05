@@ -160,18 +160,32 @@ Route::post(
     'EventoController@logInWorkShopPost'
 )->name('login_event_post');
 
-Route::get(
-    'cron',
-    function () {
-        $now = Carbon::create(2019, 04, 05, 10, 55, 00);
-        $eventos = Evento::where('hora_inicio', $now->addMinute(5))->get();
-        foreach ($eventos as $evento) {
-            $usuarios = $evento->tieneUsuarios;
-            foreach ($usuarios as $usuario) {
-                if ($usuario->pivot->asistencia === 0) {
-                    $evento->tieneUsuarios()->detach($usuario->id);
-                };
-            }
-        }
-    }
-)->name('login_event');
+
+Route::view(
+    'flisol/previous/registration',
+    'evento.register_event'
+)->name('login_previous_register');
+
+Route::post(
+    'flisol/previous/registration',
+    'EventoController@previousRegistrationPost'
+)->name('login_previous_register_post');
+
+
+//Route::get(
+//    'cron',
+//    function () {
+////        $now = Carbon::create(2019, 04, 05, 10, 55, 00);
+//        $now = Carbon::now();
+//        return dd(Carbon::now());
+//        $eventos = Evento::where('hora_inicio', $now->addMinute(5))->get();
+//        foreach ($eventos as $evento) {
+//            $usuarios = $evento->tieneUsuarios;
+//            foreach ($usuarios as $usuario) {
+//                if ($usuario->pivot->asistencia === 0) {
+//                    $evento->tieneUsuarios()->detach($usuario->id);
+//                };
+//            }
+//        }
+//    }
+//)->name('login_event');

@@ -13,7 +13,7 @@
 
 Route::view('/', 'welcome')->name("welcome");
 
-Route::view('admin/login','admin.login')
+Route::view('admin/login', 'admin.login')
     ->name('login');
 
 Route::post('admin/login',
@@ -93,6 +93,16 @@ Route::view("user/event/registry",
 Route::post("user/event/registry",
     'UsuarioController@secondFormPost')
     ->name("user_second_form_post");
+
+Route::view("user/print/badge",
+    'usuario.recovery_badge')
+    ->name("recovery_badge");
+
+Route::post("user/print/badge",
+    'UsuarioController@recoveryBadge')
+    ->name("recovery_badge_post");
+
+
 /**
  *=======================================
  *          Ponentes Routes

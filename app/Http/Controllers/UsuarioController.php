@@ -14,6 +14,7 @@ use App\Models\Institucion;
 use App\Models\Municipio;
 use App\Models\Usuario;
 use DB;
+use foo\bar;
 use Hash;
 use http\Client\Curl\User;
 use Illuminate\Http\Request;
@@ -459,5 +460,24 @@ class UsuarioController extends Controller
                 ->withErrors(["general" => "Ocurrio un error al crear el usuario", " ", $e->getMessage()]);
         }
 
+    }
+
+    public function recoveryBadge(Request $request)
+    {
+        $validator = Validator::make($request->all(),
+            ['email' => 'required|email|exists:usuario,correo'],
+            [
+                'email.required' => 'El email es requerido.',
+                'email.email' => 'El email no es válido.',
+                'email.exists' => 'El email aún no ha sido registrado.',
+            ]
+        );
+        $validator->validate();
+        $email = $request->input('email');
+        $user = Usuario::whereCorreo($email)->first();
+        if ($user->QR_url === null) {
+            return back()->withInput()->withErrors(["general" => "El usuario no concluyo su registro"]);
+        }
+        return view('usuario.recovery_badge', ["user" => $user]);
     }
 }

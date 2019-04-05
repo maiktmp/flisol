@@ -13,6 +13,13 @@
 
 Route::view('/', 'welcome')->name("welcome");
 
+Route::view('admin/login','admin.login')
+    ->name('login');
+
+Route::post('admin/login',
+    'Auth\LoginController@authenticate')
+    ->name('login_auth');
+
 /**
  *=======================================
  *          User Routes

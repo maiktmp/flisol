@@ -10,81 +10,82 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 /**
-*=======================================
-*          Ponente Routes
-*=======================================
-*/
+ *=======================================
+ *          Ponente Routes
+ *=======================================
+ */
 Route::get('/ponente/index',
-'PonenteController@index')
-->name("index_ponente");
+    'PonenteController@index')
+    ->name("index_ponente");
 
 Route::view('/ponente/create',
-'admin.ponente.create')
-->name('ponente_create');
+    'admin.ponente.create')
+    ->name('ponente_create');
 
 Route::post('/ponente/create',
-'PonenteController@createPost')
-->name('ponente_create_post');
+    'PonenteController@createPost')
+    ->name('ponente_create_post');
 
 Route::get('/ponente/{ponenteId}/update',
-'PonenteController@update')
-->name("ponente_update");
+    'PonenteController@update')
+    ->name("ponente_update");
 
 Route::post('/ponente/{ponenteId}/update',
-'PonenteController@updatePost')
-->name("ponente_update_post");
+    'PonenteController@updatePost')
+    ->name("ponente_update_post");
 
 /**
-*=======================================
-*          Patrocinador Routes
-*=======================================
-*/
+ *=======================================
+ *          Patrocinador Routes
+ *=======================================
+ */
 Route::get('/sponsort/index',
-'PatrocinadorController@index')
-->name("index_patrocinador");
+    'PatrocinadorController@index')
+    ->name("index_patrocinador");
 
 Route::view('/sponsort/create',
-'admin.patrocinador.create')
-->name('sponsort_create');
+    'admin.patrocinador.create')
+    ->name('sponsort_create');
 
 Route::post('/sponsort/create',
-'PatrocinadorController@createPost')
-->name('sponsort_create_post');
+    'PatrocinadorController@createPost')
+    ->name('sponsort_create_post');
 
 Route::get('/sponsort/{sponsortId}/update',
-'PatrocinadorController@update')
-->name("sponsort_update");
+    'PatrocinadorController@update')
+    ->name("sponsort_update");
 
 Route::post('/sponsort/{sponsortId}/update',
-'PatrocinadorController@updatePost')
-->name("sponsort_update_post");
+    'PatrocinadorController@updatePost')
+    ->name("sponsort_update_post");
 
 
 /**
-*=======================================
-*          Evento Routes
-*=======================================
-*/
+ *=======================================
+ *          Evento Routes
+ *=======================================
+ */
 Route::get('/event/index',
-'EventoController@index')
-->name("index_event");
+    'EventoController@index')
+    ->name("index_event");
 
 Route::view('/event/create',
-'admin.event.create')
-->name('event_create');
+    'admin.event.create')
+    ->name('event_create');
 
 Route::post('/event/create',
-'EventoController@createPost')
-->name('event_create_post');
+    'EventoController@createPost')
+    ->name('event_create_post');
 
 Route::get('/event/{eventId}/update',
-'EventoController@update')
-->name("event_update");
+    'EventoController@update')
+    ->name("event_update");
 
 Route::post('/event/{eventId}/update',
-'EventoController@updatePost')
-->name("event_update_post");
+    'EventoController@updatePost')
+    ->name("event_update_post");
 
 
 

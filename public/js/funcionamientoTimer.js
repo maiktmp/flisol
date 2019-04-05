@@ -1,8 +1,8 @@
 $(document).ready(function () {
     $("#div-links").hide();
     $("#div-padre-cuenta").hide();
-    //var date1 = moment('2019-04-05 09:00:00');
-    var date1 = moment('2019-04-04 18:41:00');
+    var date1 = moment('2019-04-05 09:00:00');
+    //var date1 = moment('2019-04-04 18:41:00');
     var date3 = moment();
     var duration = moment.duration({
         'seconds': date1.diff(date3, "seconds")
